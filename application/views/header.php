@@ -22,6 +22,12 @@
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
 
+    <link rel="stylesheet" href="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.css">
+    <style>
+        .text-error {
+            color: red;
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,6 +37,31 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- jQuery 3 -->
+    <script src="<?= base_url() ?>assets/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="<?= base_url() ?>assets/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="<?= base_url() ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+    <script src="<?= base_url() ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="<?= base_url() ?>assets/raphael/raphael.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="<?= base_url() ?>assets/dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
+    <script src="<?= base_url() ?>assets/form-master/dist/jquery.form.min.js"></script>
+    <script src="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.js"></script>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -115,7 +146,7 @@
                     <li class="header">MAIN NAVIGATION</li>
 
                     <li><a href="<?= base_url('naivebayes') ?>"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-                    <li><a href="<?= base_url('naivebayes') ?>"><i class="fa fa-book"></i> <span>Naivebayes</span></a></li>
+                    <li><a href="<?= base_url('naivebayes/naivebayes') ?>"><i class="fa fa-book"></i> <span>Naivebayes</span></a></li>
 
 
                 </ul>
@@ -126,13 +157,3 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Dashboard
-                    <small>Control panel</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
-                </ol>
-            </section>

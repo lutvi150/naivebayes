@@ -5,9 +5,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Model extends CI_Model
 {
 
-    function get_data($table)
+    function get_data($table, $orderby, $order)
     {
-        return $this->db->from($table)->get();
+        $this->db->from($table);
+        $this->db->order_by($orderby, $order);
+        return $this->db->get();
     }
     function insert($table, $data)
     {
@@ -23,8 +25,8 @@ class Model extends CI_Model
     }
     function update_data($table, $data, $where, $key)
     {
-        $this->db->update($table, $data);
         $this->db->where($where, $key);
+        $this->db->update($table, $data);
     }
     function get_where_data_2($table, $where, $orderby, $order)
     {
@@ -32,6 +34,11 @@ class Model extends CI_Model
         $this->db->where($where);
         $this->db->order_by($orderby, $order);
         return $this->db->get();
+    }
+    function delete_data($table, $where)
+    {
+        $this->db->delete($table, $where);
+        return $this->db->affected_rows();
     }
 }
                         
