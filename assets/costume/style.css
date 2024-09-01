@@ -1,0 +1,24 @@
+.text-error{
+    color: red;
+}
+.logo-app{
+    width: 300px;
+}
+img.foto-anak{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+} 
+.nama-anak{
+	font-weight: bold;
+}
+td.head-atribut {
+    font-weight: bold;
+    background-color: antiquewhite;
+    border-block-color: inherit;
+    border-color: black;
+    border-style: dashed;
+    border-width: medium;
+    border: 7px black solid;
+    border-collapse: inherit;
+}

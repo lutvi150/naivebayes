@@ -14,6 +14,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/Ionicons/css/ionicons.min.css">
 
+    <link rel="shortcut icon" href="<?= base_url() ?>assets/icon/favicon.ico" type="image/x-icon">
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- Theme style -->
@@ -23,11 +24,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
 
     <link rel="stylesheet" href="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.css">
-    <style>
-        .text-error {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= base_url() ?>assets/costume/style.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -64,7 +61,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body id="document-body" class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
         <header class="main-header">

@@ -21,7 +21,10 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-
+                    <div class="alert alert-info" role="alert">
+                        <strong>Pemberitahuan</strong>
+                        <p>Data Sample Bahan Pengujian</p>
+                    </div>
                     <button class="btn btn-success btn-sm" onclick="show_form()"><i class="fa fa-plus"></i> Datasheet</button>
                     <table id="tabel-1" class="table table-bordered table-striped">
                         <thead>
@@ -34,19 +37,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data as $key => $value): ?>
+                            <?php if ($status == 'already_exist'): ?>
+                                <?php foreach ($result as $key => $value): ?>
+                                    <tr>
+                                        <td style="width: 5%;"><?= $key + 1 ?></td>
+                                        <td><?= $value->nama_data ?></td>
+                                        <td><?= $value->tanggal_hitung ?></td>
+                                        <td><?= $value->jumlah_data ?></td>
+                                        <td style="width: 20%;">
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="delete_data('<?= $value->id_data ?>')"><i class="fa fa-trash"></i> Hapus </button>
+                                            <button type="button" onclick="show_form_edit('<?= $value->id_data ?>','<?= $value->nama_data ?>')" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit </button>
+                                            <a href="<?= base_url("naivebayes/config_data/" . $value->id_data) ?>" type="button" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> DataSheet</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
                                 <tr>
-                                    <td style="width: 5%;"><?= $key + 1 ?></td>
-                                    <td><?= $value->nama_data ?></td>
-                                    <td><?= $value->tanggal_hitung ?></td>
-                                    <td><?= $value->jumlah_data ?></td>
-                                    <td style="width: 20%;">
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="delete_data('<?= $value->id_data ?>')"><i class="fa fa-trash"></i> Hapus </button>
-                                        <button type="button" onclick="show_form_edit('<?= $value->id_data ?>','<?= $value->nama_data ?>')" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit </button>
-                                        <a href="<?= base_url("naivebayes/config_data/" . $value->id_data) ?>" type="button" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> DataSheet</a>
-                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
-                            <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

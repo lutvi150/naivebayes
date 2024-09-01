@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 $config['app_name'] = 'Naive Bayes';
+$config['owner'] = 'Karmila';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
