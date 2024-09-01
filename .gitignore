@@ -31,3 +31,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 node_modules/
+upload/*.jpg
+upload/*.png
+upload/*.gif
+upload/*.jpeg
+*.zip
