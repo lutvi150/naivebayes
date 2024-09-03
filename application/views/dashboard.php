@@ -12,7 +12,7 @@
 <section class="content">
 	<!-- Small boxes (Stat box) -->
 	<div class="row">
-		<div class="col-lg-3 col-xs-6">
+		<div class="col-lg-4 col-xs-6">
 			<!-- small box -->
 			<div class="small-box bg-aqua">
 				<div class="inner">
@@ -27,13 +27,13 @@
 			</div>
 		</div>
 		<!-- ./col -->
-		<div class="col-lg-3 col-xs-6">
+		<div class="col-lg-4 col-xs-6">
 			<!-- small box -->
 			<div class="small-box bg-green">
 				<div class="inner">
 					<h3><?= $anak->laki ?></sup></h3>
 
-					<p>Anak Laki-laki</p>
+					<p>Kesiapan</p>
 				</div>
 				<div class="icon">
 					<i class="ion ion-stats-bars"></i>
@@ -42,31 +42,16 @@
 			</div>
 		</div>
 		<!-- ./col -->
-		<div class="col-lg-3 col-xs-6">
+		<div class="col-lg-4 col-xs-6">
 			<!-- small box -->
 			<div class="small-box bg-yellow">
 				<div class="inner">
 					<h3><?= $anak->perempuan ?></h3>
 
-					<p>Anak Perempuan</p>
+					<p>Kemampuan</p>
 				</div>
 				<div class="icon">
 					<i class="ion ion-person-add"></i>
-				</div>
-				<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-			</div>
-		</div>
-		<!-- ./col -->
-		<div class="col-lg-3 col-xs-6">
-			<!-- small box -->
-			<div class="small-box bg-red">
-				<div class="inner">
-					<h3><?= $anak->anak_belum_siap ?></h3>
-
-					<p>Anak Belum Siap</p>
-				</div>
-				<div class="icon">
-					<i class="ion ion-pie-graph"></i>
 				</div>
 				<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
@@ -100,7 +85,7 @@
 
 		</section>
 		<!-- Left col -->
-		<section class="col-lg-6 connectedSortable">
+		<section class="col-lg-6 connectedSortable" hidden>
 
 			<!-- quick email widget -->
 			<div class="box box-info">

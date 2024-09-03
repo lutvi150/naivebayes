@@ -666,6 +666,16 @@ class Naivebayes extends CI_Controller
 		];
 		echo json_encode($response);
 	}
+	function get_data_anak_spesifik()
+	{
+		$id_anak = $this->input->post('id_anak');
+		$data_anak = $this->costume->get_data_anak_spefisik($id_anak);
+		$response = [
+			'status' => 'success',
+			'data' => $data_anak
+		];
+		echo json_encode($response);
+	}
 }
         
     /* End of file  Naivebayes.php */

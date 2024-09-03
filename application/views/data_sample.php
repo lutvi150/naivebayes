@@ -130,6 +130,7 @@
 											<button class="btn btn-danger btn-sm" onclick="delete_data(<?= $value->id_anak ?>)"><i class="fa fa-trash"></i></button>
 											<button class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
 											<button class="btn btn-success btn-sm"><i class="fa fa-upload"></i></button>
+											<button class="btn btn-success btn-sm" onclick="show_data('<?= $value->id_anak ?><')"><i class="fa fa-eye"></i></button>
 										</td>
 									</tr>
 								<?php endforeach; ?>
@@ -654,6 +655,55 @@
 		</div>
 	</div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="priview-data-anak" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Detail Data Anak</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-bordered">
+					<tr>
+						<td>Nama</td>
+						<td>:</td>
+						<td id="nama_anak_view"></td>
+					</tr>
+					<tr>
+						<td>Jenis Kelamin</td>
+						<td>:</td>
+						<td id="jenis_kelamin_view"></td>
+					</tr>
+					<tr>
+						<td>Umur</td>
+						<td>:</td>
+						<td id="umur_view"></td>
+
+					</tr>
+					<tr>
+						<td>Nama Ayah</td>
+						<td>:</td>
+						<td id="nama_ayah_view"></td>
+					</tr>
+					<tr>
+						<td>Nama Ibu</td>
+						<td>:</td>
+						<td id="nama_ibu_view"></td>
+					</tr>
+				</table>
+				<div class="alert alert-success " role="alert">
+					<span class="rekomendasi"></span>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- /.content -->
 <script>
 	$(document).ready(function() {
@@ -906,6 +956,35 @@
 					title: 'Oops...',
 					text: 'Something went wrong!',
 				})
+			}
+		});
+	}
+	show_data = (id_anak) => {
+		$.ajax({
+			type: "POST",
+			url: url + "naivebayes/get_data_anak_spesifik",
+			data: {
+				id_anak: id_anak
+			},
+			dataType: "JSON",
+			success: function(response) {
+				$("#priview-data-anak").modal('show');
+				$("#nama_anak_view").text(response.data.nama_anak);
+				$("#jenis_kelamin_view").text(response.data.jenis_kelamin);
+				$("#umur_view").text(response.data.umur);
+				$("#nama_ayah_view").text(response.data.nama_ayah);
+				$("#nama_ibu_view").text(response.data.nama_ibu);
+				$(".rekomendasi").text(`Jadi probabilitas bahwa ${response.data.nama_anak} siap masuk sekolah dasar adalah sekitar 99.4%  .`)
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				Swal.fire({
+					icon: 'error',
+					title: 'Gagal',
+					text: 'Check your internet connection!',
+					showConfirmButton: false,
+					timer: 1500
+				})
+
 			}
 		});
 	}
