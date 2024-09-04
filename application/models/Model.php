@@ -46,6 +46,26 @@ class Model extends CI_Model
 		$this->db->where('id_sample', $id_sample);
 		return $this->db->count_all_results();
 	}
+	// for chart js
+	function hitung_siwa($jenis_kelamin)
+	{
+		$this->db->from('table_anak');
+		$this->db->where('jenis_kelamin', $jenis_kelamin);
+		return $this->db->count_all_results();
+	}
+	function hitung_siap($status)
+	{
+		$this->db->from('table_anak');
+		$this->db->where('keterangan', $status);
+		return $this->db->count_all_results();
+	}
+	function hitung_emosional($field, $value)
+	{
+		$this->db->from('table_anak');
+		$this->db->join('table_kemampuan_anak', 'table_anak.id_anak = table_kemampuan_anak.id_anak', 'left');
+		$this->db->where('table_kemampuan_anak.' . $field, $value);
+		return $this->db->count_all_results();
+	}
 }
                         
 /* End of file Database.php */

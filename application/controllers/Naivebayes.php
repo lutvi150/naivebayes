@@ -99,8 +99,8 @@ class Naivebayes extends CI_Controller
 		$data['analisis'] = $this->analisis($id_data);
 		$data['data_anak'] = $this->data_anak($id_data, $data['analisis']);
 		$this->model->update_data('data', ['data_analisis' => json_encode($data['analisis'])], 'id_data', $id_data);
-		// echo json_encode($data);
-		// exit;
+		echo json_encode($data);
+		exit;
 		$this->menu($data);
 	}
 	function data_anak($id_sample, $data_analisis)
@@ -110,7 +110,7 @@ class Naivebayes extends CI_Controller
 			foreach ($data as $key => $value) {
 
 				$result[] = $value;
-				$value->{'kesiapan'} = round(100 / $value->id_anak, 4) * 3;
+				$value->{'kesiapan'} = $this->make_analisis_naivebayes($value->nst);
 			}
 			$response = [
 				'status' => 'data_exist',
@@ -670,11 +670,52 @@ class Naivebayes extends CI_Controller
 	{
 		$id_anak = $this->input->post('id_anak');
 		$data_anak = $this->costume->get_data_anak_spefisik($id_anak);
+		$nst = $data_anak->nst;
+		$kesiapan = $this->model->get_where_data('table_kemampuan_anak', 'id_anak', $id_anak, 'id_kemampuan', 'desc')->row();
+		$siap = $this->likelihood($nst, 55);
+		$tidak_siap = $this->likelihood($nst, 45);
+		$posterior = $this->posterior($siap, $tidak_siap);
 		$response = [
 			'status' => 'success',
-			'data' => $data_anak
+			'data' => $data_anak,
+			'analisis' => $posterior,
+			'kesiapan' => $kesiapan,
 		];
 		echo json_encode($response);
+	}
+	function analisi_faktor_anak() {}
+	function make_analisis_naivebayes($nst)
+	{
+
+		$siap = $this->likelihood($nst, 55);
+		$tidak_siap = $this->likelihood($nst, 45);
+		$posterior = $this->posterior($siap, $tidak_siap);
+		return $response = [
+			'1' => 'P(' . $nst . '|SIAP)=' . $siap,
+			'2' => 'P(' . $nst . '|TIDAK SIAP)=' . $tidak_siap,
+			'3' => 'P(SIAP|' . $nst . ')=' . $posterior,
+		];
+	}
+	function likelihood($x, $mean)
+	{
+		$pi = pi();
+		$e = exp(1);
+		$stdDev = 0.5;
+		$expPart = exp(- (($x - $mean) ** 2) / (2 * ($stdDev ** 2)));
+		$result = (1 / (5 * sqrt(2 * $pi))) * $expPart;
+		return $result;
+	}
+	function posterior($siap, $tidak_siap)
+	{
+		$a1 = $siap;
+		$a2 = 0.8235;
+		$b1 = $tidak_siap;
+		$b2 = 0.1765;
+		$numerator = $a1 * $a2;
+		$denominator = ($a1 * $a2) + ($b1 * $b2);
+		$result = $numerator / $denominator;
+		$persen = $result * 100;
+		return $persen;
 	}
 }
         

@@ -125,7 +125,7 @@
 											</table>
 										</td>
 										<td><?= $value->keterangan ?></td>
-										<td><?= $value->kesiapan ?>%</td>
+										<td style="width:20%"><?= $value->kesiapan[1] . '</br>' . $value->kesiapan[2] . '</br>' . $value->kesiapan[3] . '</br>' ?></td>
 										<td>
 											<button class="btn btn-danger btn-sm" onclick="delete_data(<?= $value->id_anak ?>)"><i class="fa fa-trash"></i></button>
 											<button class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
@@ -144,7 +144,7 @@
 		</div>
 		<!-- /.col -->
 	</div>
-	<div class="row">
+	<div class="row" hidden>
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
@@ -668,8 +668,8 @@
 			<div class="modal-body">
 				<table class="table table-bordered">
 					<tr>
-						<td>Nama</td>
-						<td>:</td>
+						<td style="width:40%">Nama</td>
+						<td style="width:1%">:</td>
 						<td id="nama_anak_view"></td>
 					</tr>
 					<tr>
@@ -692,6 +692,29 @@
 						<td>Nama Ibu</td>
 						<td>:</td>
 						<td id="nama_ibu_view"></td>
+					</tr>
+				</table>
+				<br>
+				<table class="table table-bordered">
+					<tr>
+						<td style="width:1%">Emosional</td>
+						<td style="width:1%">:</td>
+						<td class="emosional_view"></td>
+					</tr>
+					<tr>
+						<td>Kognitif</td>
+						<td>:</td>
+						<td class="kognitif_view"></td>
+					</tr>
+					<tr>
+						<td>Sosial</td>
+						<td>:</td>
+						<td class="sosial_view"></td>
+					</tr>
+					<tr>
+						<td>Calistung</td>
+						<td>:</td>
+						<td class="calistung_view"></td>
 					</tr>
 				</table>
 				<div class="alert alert-success " role="alert">
@@ -962,7 +985,7 @@
 	show_data = (id_anak) => {
 		$.ajax({
 			type: "POST",
-			url: url + "naivebayes/get_data_anak_spesifik",
+			url: url + "NAIVEBAYES/get_data_anak_spesifik",
 			data: {
 				id_anak: id_anak
 			},
@@ -974,7 +997,11 @@
 				$("#umur_view").text(response.data.umur);
 				$("#nama_ayah_view").text(response.data.nama_ayah);
 				$("#nama_ibu_view").text(response.data.nama_ibu);
-				$(".rekomendasi").text(`Jadi probabilitas bahwa ${response.data.nama_anak} siap masuk sekolah dasar adalah sekitar 99.4%  .`)
+				$(".emosional_view").text(response.data.emosional);
+				$(".kognitif_view").text(response.data.kognitif);
+				$(".sosial_view").text(response.data.sosial);
+				$(".calistung_view").text(response.data.calistung);
+				$(".rekomendasi").text(`Jadi probabilitas bahwa ${response.data.nama_anak} siap masuk sekolah dasar adalah sekitar ${response.analisis}%  .`)
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				Swal.fire({

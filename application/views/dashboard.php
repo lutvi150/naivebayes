@@ -23,7 +23,7 @@
 				<div class="icon">
 					<i class="ion ion-person"></i>
 				</div>
-				<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				<a href="<?= base_url('grafik/index/jumlah_anak') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 		<!-- ./col -->
@@ -38,7 +38,7 @@
 				<div class="icon">
 					<i class="ion ion-stats-bars"></i>
 				</div>
-				<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				<a href="<?= base_url('grafik/index/kesiapan') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 		<!-- ./col -->
@@ -53,7 +53,7 @@
 				<div class="icon">
 					<i class="ion ion-person-add"></i>
 				</div>
-				<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+				<a href="<?= base_url('grafik/index/kemampuan') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 			</div>
 		</div>
 		<!-- ./col -->
@@ -106,30 +106,3 @@
 
 </section>
 <!-- /.content -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- <script src="<?= base_url() ?>assets/chart.js/dist/chart.js"></script> -->
-<script>
-	$(document).ready(function() {
-
-		const ctx = document.getElementById('myChart');
-
-		new Chart(ctx, {
-			type: 'pie',
-			data: {
-				labels: ['Laki-laki', 'Perempuan'],
-				datasets: [{
-					label: 'Jumlah',
-					data: [12, 19, ],
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				}
-			}
-		});
-	});
-</script>
