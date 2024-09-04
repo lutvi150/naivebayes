@@ -4,27 +4,27 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?= $this->config->item('app_name') ?> | <?= $title ?></title>
+	<title><?=$this->config->item('app_name')?> | <?=$title?></title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.7 -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/dist/css/bootstrap.min.css">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets/font-awesome/css/font-awesome.min.css">
 	<!-- Ionicons -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets/Ionicons/css/ionicons.min.css">
 
-	<link rel="shortcut icon" href="<?= base_url() ?>assets/icon/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="<?=base_url()?>assets/icon/favicon.ico" type="image/x-icon">
 	<!-- DataTables -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets/dist/css/AdminLTE.min.css">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-	<link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets/dist/css/skins/_all-skins.min.css">
 
-	<link rel="stylesheet" href="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/costume/style.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets/sweetalert2/dist/sweetalert2.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets/costume/style.css">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -36,28 +36,28 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 	<!-- jQuery 3 -->
-	<script src="<?= base_url() ?>assets/jquery/dist/jquery.min.js"></script>
+	<script src="<?=base_url()?>assets/jquery/dist/jquery.min.js"></script>
 	<!-- jQuery UI 1.11.4 -->
-	<script src="<?= base_url() ?>assets/jquery-ui/jquery-ui.min.js"></script>
+	<script src="<?=base_url()?>assets/jquery-ui/jquery-ui.min.js"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	<script>
 		$.widget.bridge('uibutton', $.ui.button);
 	</script>
 	<!-- Bootstrap 3.3.7 -->
-	<script src="<?= base_url() ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="<?=base_url()?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- DataTables -->
-	<script src="<?= base_url() ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script src="<?= base_url() ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="<?=base_url()?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="<?=base_url()?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	<!-- Morris.js charts -->
-	<script src="<?= base_url() ?>assets/raphael/raphael.min.js"></script>
+	<script src="<?=base_url()?>assets/raphael/raphael.min.js"></script>
 	<!-- AdminLTE App -->
-	<script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
+	<script src="<?=base_url()?>assets/dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-	<script src="<?= base_url() ?>assets/dist/js/pages/dashboard.js"></script>
+	<script src="<?=base_url()?>assets/dist/js/pages/dashboard.js"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
-	<script src="<?= base_url() ?>assets/form-master/dist/jquery.form.min.js"></script>
-	<script src="<?= base_url() ?>assets/sweetalert2/dist/sweetalert2.js"></script>
+	<script src="<?=base_url()?>assets/dist/js/demo.js"></script>
+	<script src="<?=base_url()?>assets/form-master/dist/jquery.form.min.js"></script>
+	<script src="<?=base_url()?>assets/sweetalert2/dist/sweetalert2.js"></script>
 
 </head>
 
@@ -85,13 +85,13 @@
 						<!-- User Account: style can be found in dropdown.less -->
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="<?= base_url() ?>assets/dist/img/avatar.png" class="user-image" alt="User Image">
+								<img src="<?=base_url()?>assets/dist/img/avatar.png" class="user-image" alt="User Image">
 								<span class="hidden-xs">Admin</span>
 							</a>
 							<ul class="dropdown-menu">
 								<!-- User image -->
 								<li class="user-header">
-									<img src="<?= base_url() ?>assets/dist/img/avatar.png" class="img-circle" alt="User Image">
+									<img src="<?=base_url()?>assets/dist/img/avatar.png" class="img-circle" alt="User Image">
 
 									<p>
 										Admin
@@ -102,7 +102,7 @@
 								<li class="user-footer">
 
 									<div class="pull-right">
-										<a href="<?= base_url('controller/logout') ?>" class="btn btn-default btn-flat">Logout</a>
+										<a href="<?=base_url('controller/logout')?>" class="btn btn-default btn-flat">Logout</a>
 									</div>
 								</li>
 							</ul>
@@ -120,7 +120,7 @@
 				<!-- Sidebar user panel -->
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="<?= base_url() ?>assets/dist/img/avatar.png" class="img-circle" alt="User Image">
+						<img src="<?=base_url()?>assets/dist/img/avatar.png" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 						<p>Admin</p>
@@ -142,9 +142,10 @@
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
 
-					<li><a href="<?= base_url('naivebayes') ?>"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-					<li><a href="<?= base_url('naivebayes/naivebayes') ?>"><i class="fa fa-book"></i> <span>Naivebayes</span></a></li>
-
+					<li><a href="<?=base_url('naivebayes')?>"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+					<li><a href="<?=base_url('naivebayes/config_data/3/table')?>"><i class="fa fa-book"></i> <span>Naivebayes</span></a></li>
+					<li><a href="<?=base_url('naivebayes/config_data/3/analisis')?>"><i class="fa fa-book"></i> <span>Analisis</span></a></li>
+					<li><a href="<?=base_url('naivebayes/akurasi')?>"><i class="fa fa-book"></i> <span>Analisis</span></a></li>
 
 				</ul>
 			</section>
