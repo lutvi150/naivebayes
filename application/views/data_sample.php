@@ -59,7 +59,6 @@
 								<th>Kemampuan Anak</th>
 								<th>Jenis Data</th>
 								<th style="width:1%">Ket</th>
-								<th style="width: 1%;">Prob Kesiapan</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -132,7 +131,7 @@
 											</select>
 										</td>
 										<td><?= $value->keterangan ?></td>
-										<td style="width:20%"><?= $value->kesiapan[1] . '</br>' . $value->kesiapan[2] . '</br>' . $value->kesiapan[3] . '</br>' ?></td>
+
 										<td>
 											<button class="btn btn-danger btn-sm" onclick="delete_data(<?= $value->id_anak ?>)"><i class="fa fa-trash"></i></button>
 											<button class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
