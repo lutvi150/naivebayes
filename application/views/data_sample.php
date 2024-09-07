@@ -13,12 +13,12 @@
 
 <!-- Main content -->
 <section class="content">
-	<div class="row" <?= $jenis == "table" ? "" : "hidden" ?>>
+	<div class="row" <?=$jenis == "table" ? "" : "hidden"?>>
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header width-birder">
-					<h3 class="box-title">Data: <?= $nama_sample->nama_data ?></h3>
-					<h3 class="box-title">Performace: <?= $analisis['time_execution'] ?></h3>
+					<h3 class="box-title">Data: <?=$nama_sample->nama_data?></h3>
+					<h3 class="box-title">Performace: <?=$analisis['time_execution']?></h3>
 					<div class="box-tools pull-right">
 						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 						<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
@@ -40,10 +40,10 @@
 					</div>
 					<button class="btn btn-success btn-sm" onclick="add_anak()"><i class="fa fa-plus"></i> Tambah Data Anak</button>
 
-					<button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Import Data Anak</button>
+					<button  class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Import Data Anak</button>
 
-					<a type="button" href="<?= base_url('naivebayes/naivebayes') ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Kembali</a>
-					<a type="button" href="<?= base_url('naivebayes/prediksi') ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Analisis Data</a>
+					<a type="button" href="<?=base_url('naivebayes')?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Kembali</a>
+					<a type="button" href="<?=base_url('naivebayes/prediksi')?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Analisis Data</a>
 
 					<table id="tabel-1" class="table table-bordered table-striped">
 						<thead>
@@ -66,44 +66,44 @@
 							<?php if ($data_anak['status'] == 'data_exist'): ?>
 								<?php foreach ($data_anak['result'] as $key => $value): ?>
 									<tr>
-										<td style="width:1%"><?= $key + 1 ?></td>
+										<td style="width:1%"><?=$key + 1?></td>
 										<td>
 											<table class="table text-center">
 												<tr>
 													<td>
 														<?php if ($value->foto_anak == "" && $value->jenis_kelamin == 'L') {
-															$foto = base_url('assets/icon/a_cowok.jpg');
-														} elseif ($value->foto_anak == "" && $value->jenis_kelamin == 'P') {
-															$foto = base_url('assets/icon/a_cewek.jpg');
-														} else {
-															$foto = base_url($value->foto_anak);
-														} ?>
+    $foto = base_url('assets/icon/a_cowok.jpg');
+} elseif ($value->foto_anak == "" && $value->jenis_kelamin == 'P') {
+    $foto = base_url('assets/icon/a_cewek.jpg');
+} else {
+    $foto = base_url($value->foto_anak);
+}?>
 
-														<img class="foto-anak" src="<?= $foto ?>" alt="" srcset="">
+														<img class="foto-anak" src="<?=$foto?>" alt="" srcset="">
 													</td>
 												</tr>
 												<tr>
-													<td class="text-center nama-anak"><?= $value->nama_anak ?></td>
+													<td class="text-center nama-anak"><?=$value->nama_anak?></td>
 												</tr>
 												<tr>
-													<td> <button class="btn btn-success btn-xs" onclick="ubah_foto(<?= $value->id_anak ?>)">Ubah Foto</button></td>
+													<td> <button class="btn btn-success btn-xs" onclick="ubah_foto(<?=$value->id_anak?>)">Ubah Foto</button></td>
 												</tr>
 											</table>
 										</td>
-										<td><?= $value->jenis_kelamin ?></td>
-										<td><?= $value->umur ?></td>
-										<td><?= $value->nst ?></td>
+										<td><?=$value->jenis_kelamin?></td>
+										<td><?=$value->umur?></td>
+										<td><?=$value->nst?></td>
 										<td>
-											Ayah:<?= $value->nama_ayah ?><br>
-											Ibu: <?= $value->nama_ibu ?>
+											Ayah:<?=$value->nama_ayah?><br>
+											Ibu: <?=$value->nama_ibu?>
 										</td>
 										<td>
-											Ayah:<?= $value->pendidikan_ayah ?><br>
-											Ibu: <?= $value->pendidikan_ibu ?>
+											Ayah:<?=$value->pendidikan_ayah?><br>
+											Ibu: <?=$value->pendidikan_ibu?>
 										</td>
 										<td>
-											Ayah:<?= $value->pekerjaan_ayah ?><br>
-											Ibu: <?= $value->pekerjaan_ibu ?>
+											Ayah:<?=$value->pekerjaan_ayah?><br>
+											Ibu: <?=$value->pekerjaan_ibu?>
 										</td>
 										<td>
 											<table class="table text-center">
@@ -114,33 +114,33 @@
 													<td>C</td>
 												</tr>
 												<tr class="">
-													<td><?= $value->emosional ?></td>
-													<td><?= $value->kognitif ?></td>
-													<td><?= $value->sosial ?></td>
-													<td><?= $value->calistung ?></td>
+													<td><?=$value->emosional?></td>
+													<td><?=$value->kognitif?></td>
+													<td><?=$value->sosial?></td>
+													<td><?=$value->calistung?></td>
 												</tr>
 												<tr>
-													<td colspan="4"><button type="button" onclick="edit_kemampuan('<?= $value->id_anak ?>')" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i>Kemampuan Anak</button></td>
+													<td colspan="4"><button type="button" onclick="edit_kemampuan('<?=$value->id_anak?>')" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i>Kemampuan Anak</button></td>
 												</tr>
 											</table>
 										</td>
 										<td>
-											<select name="" class="form-control" onchange="update_jenis(<?= $value->id_anak ?>)" id="">
-												<option <?= $value->jenis_data == 0 ? "selected" : "" ?> value="0">Training</option>
-												<option <?= $value->jenis_data == 1 ? "selected" : "" ?> value="1">Testing</option>
+											<select name="" class="form-control" onchange="update_jenis(<?=$value->id_anak?>)" id="">
+												<option <?=$value->jenis_data == 0 ? "selected" : ""?> value="0">Training</option>
+												<option <?=$value->jenis_data == 1 ? "selected" : ""?> value="1">Testing</option>
 											</select>
 										</td>
-										<td><?= $value->keterangan ?></td>
+										<td><?=$value->keterangan?></td>
 
 										<td>
-											<button class="btn btn-danger btn-sm" onclick="delete_data(<?= $value->id_anak ?>)"><i class="fa fa-trash"></i></button>
+											<button class="btn btn-danger btn-sm" onclick="delete_data(<?=$value->id_anak?>)"><i class="fa fa-trash"></i></button>
 											<button class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
 											<button class="btn btn-success btn-sm"><i class="fa fa-upload"></i></button>
-											<button class="btn btn-success btn-sm" onclick="show_data('<?= $value->id_anak ?><')"><i class="fa fa-eye"></i></button>
+											<button class="btn btn-success btn-sm" onclick="show_data('<?=$value->id_anak?><')"><i class="fa fa-eye"></i></button>
 										</td>
 									</tr>
-								<?php endforeach; ?>
-							<?php endif; ?>
+								<?php endforeach;?>
+							<?php endif;?>
 						</tbody>
 					</table>
 				</div>
@@ -150,12 +150,15 @@
 		</div>
 		<!-- /.col -->
 	</div>
-	<div class="row" <?= $jenis == "analisis" ? "" : "hidden" ?>>
+	<div class="row" <?=$jenis == "analisis" ? "" : "hidden"?>>
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Analisis : <?= $nama_sample->nama_data ?></h3>
+					<h3 class="box-title">Analisis : <?=$nama_sample->nama_data?></h3>
 				</div>
+
+				<button class="btn btn-success btn-sm">Data Training</button>
+					<button class="btn btn-success btn-sm">Data Testing</button>
 				<!-- /.box-header -->
 				<div class="box-body">
 					<div class="col-md-4 text-center">
@@ -166,11 +169,11 @@
 							</tr>
 							<tr>
 								<td>Siap</td>
-								<td><?= $analisis['data_testing']['atribut_kelas']['siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_kelas']['siap']?></td>
 							</tr>
 							<tr>
 								<td>Belum Siap</td>
-								<td><?= $analisis['data_testing']['atribut_kelas']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_kelas']['belum_siap']?></td>
 							</tr>
 						</table>
 					</div>
@@ -185,13 +188,13 @@
 							</tr>
 							<tr>
 								<td>Siap</td>
-								<td><?= $analisis['data_testing']['atribut_jenis_kelamin']['siap']['laki_laki'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_jenis_kelamin']['siap']['perempuan'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_jenis_kelamin']['siap']['laki_laki']?></td>
+								<td><?=$analisis['data_testing']['atribut_jenis_kelamin']['siap']['perempuan']?></td>
 							</tr>
 							<tr>
 								<td>Belum Siap</td>
-								<td><?= $analisis['data_testing']['atribut_jenis_kelamin']['belum_siap']['laki_laki'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_jenis_kelamin']['belum_siap']['perempuan'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_jenis_kelamin']['belum_siap']['laki_laki']?></td>
+								<td><?=$analisis['data_testing']['atribut_jenis_kelamin']['belum_siap']['perempuan']?></td>
 							</tr>
 						</table>
 					</div>
@@ -206,13 +209,13 @@
 							</tr>
 							<tr>
 								<td>Siap</td>
-								<td><?= $analisis['data_testing']['atribut_usia']['siap']['5'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_usia']['siap']['6'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_usia']['siap']['5']?></td>
+								<td><?=$analisis['data_testing']['atribut_usia']['siap']['6']?></td>
 							</tr>
 							<tr>
 								<td>Belum Siap</td>
-								<td><?= $analisis['data_testing']['atribut_usia']['belum_siap']['5'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_usia']['belum_siap']['6'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_usia']['belum_siap']['5']?></td>
+								<td><?=$analisis['data_testing']['atribut_usia']['belum_siap']['6']?></td>
 							</tr>
 						</table>
 					</div>
@@ -227,13 +230,13 @@
 							</tr>
 							<tr>
 								<td>Ya</td>
-								<td><?= $analisis['data_testing']['atribut_emosional']['y']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_emosional']['y']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_emosional']['y']['siap']?></td>
+								<td><?=$analisis['data_testing']['atribut_emosional']['y']['belum_siap']?></td>
 							</tr>
 							<tr>
 								<td>Tidak</td>
-								<td><?= $analisis['data_testing']['atribut_emosional']['t']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_emosional']['t']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_emosional']['t']['siap']?></td>
+								<td><?=$analisis['data_testing']['atribut_emosional']['t']['belum_siap']?></td>
 							</tr>
 						</table>
 					</div>
@@ -248,13 +251,13 @@
 							</tr>
 							<tr>
 								<td>Ya</td>
-								<td><?= $analisis['data_testing']['atribut_kognitif']['y']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_kognitif']['y']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_kognitif']['y']['siap']?></td>
+								<td><?=$analisis['data_testing']['atribut_kognitif']['y']['belum_siap']?></td>
 							</tr>
 							<tr>
 								<td>Tidak</td>
-								<td><?= $analisis['data_testing']['atribut_kognitif']['t']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_kognitif']['t']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_kognitif']['t']['siap']?></td>
+								<td><?=$analisis['data_testing']['atribut_kognitif']['t']['belum_siap']?></td>
 							</tr>
 						</table>
 					</div>
@@ -269,13 +272,13 @@
 							</tr>
 							<tr>
 								<td>Ya</td>
-								<td><?= $analisis['data_testing']['atribut_sosial']['y']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_sosial']['y']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_sosial']['y']['siap']?></td>
+								<td><?=$analisis['data_testing']['atribut_sosial']['y']['belum_siap']?></td>
 							</tr>
 							<tr>
 								<td>Tidak</td>
-								<td><?= $analisis['data_testing']['atribut_sosial']['t']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_sosial']['t']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_sosial']['t']['siap']?></td>
+								<td><?=$analisis['data_testing']['atribut_sosial']['t']['belum_siap']?></td>
 							</tr>
 						</table>
 					</div>
@@ -290,17 +293,17 @@
 							</tr>
 							<tr>
 								<td>Ya</td>
-								<td><?= $analisis['data_testing']['atribut_calistung']['y']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_calistung']['y']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_calistung']['y']['siap']?></td>
+								<td><?=$analisis['data_testing']['atribut_calistung']['y']['belum_siap']?></td>
 							</tr>
 							<tr>
 								<td>Tidak</td>
-								<td><?= $analisis['data_testing']['atribut_calistung']['t']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['atribut_calistung']['t']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['atribut_calistung']['t']['siap']?></td>
+								<td><?=$analisis['data_testing']['atribut_calistung']['t']['belum_siap']?></td>
 							</tr>
 						</table>
 					</div>
-					<div class="col-md-4 text-center">
+					<div class="col-md-4 text-center" >
 
 						<h4>Probalitas Kelas</h4>
 						<table class="table text-center table-bordered atribut-jenis-kelamin">
@@ -310,12 +313,12 @@
 								<td class="head-atribut">Belum Siap</td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['siap']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['belum_siap']?></td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['belum_siap_count']?></td>
 							</tr>
 						</table>
 					</div>
@@ -332,16 +335,16 @@
 								<td class="head-atribut">Belum Siap</td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['siap']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['belum_siap']?></td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['belum_siap_count']?></td>
 							</tr>
 						</table>
 					</div>
-					<div class="col-md-4 text-center">
+					<div hidden class="col-md-4 text-center">
 
 						<h4>Probalitas Kelas</h4>
 						<table class="table text-center table-bordered atribut-jenis-kelamin">
@@ -354,69 +357,69 @@
 							</tr>
 							<tr>
 								<td rowspan="2">Jenis Kelamin</td>
-								<td><?= $analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['jenis_kelamin'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['jenis_kelamin']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['siap']?>=<?=$analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_jenis_kelamin']['laki_laki']['belum_siap_count']?></td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['jenis_kelamin'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['jenis_kelamin']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['siap']?>=<?=$analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_jenis_kelamin']['perempuan']['belum_siap_count']?></td>
 							</tr>
 							<tr>
 								<td rowspan="2">Usia</td>
-								<td><?= $analisis['data_testing']['probabilitas_usia']['5']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_usia']['5']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_usia']['5']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_usia']['5']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_usia']['5']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_usia']['5']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_usia']['5']['siap']?>=<?=$analisis['data_testing']['probabilitas_usia']['5']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_usia']['5']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_usia']['5']['belum_siap_count']?></td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_usia']['6']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_usia']['6']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_usia']['6']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_usia']['6']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_usia']['6']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_usia']['6']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_usia']['6']['siap']?>=<?=$analisis['data_testing']['probabilitas_usia']['6']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_usia']['6']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_usia']['6']['belum_siap_count']?></td>
 							</tr>
 							<tr>
 								<td rowspan="2">Emosional</td>
-								<td><?= $analisis['data_testing']['probabilitas_emosional']['y']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_emosional']['y']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_emosional']['y']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_emosional']['y']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_emosional']['y']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_emosional']['y']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_emosional']['y']['siap']?>=<?=$analisis['data_testing']['probabilitas_emosional']['y']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_emosional']['y']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_emosional']['y']['belum_siap_count']?></td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_emosional']['t']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_emosional']['t']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_emosional']['t']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_emosional']['t']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_emosional']['t']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_emosional']['t']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_emosional']['t']['siap']?>=<?=$analisis['data_testing']['probabilitas_emosional']['t']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_emosional']['t']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_emosional']['t']['belum_siap_count']?></td>
 							</tr>
 							<tr>
 								<td rowspan="2">Kognitif</td>
-								<td><?= $analisis['data_testing']['probabilitas_kognitif']['y']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kognitif']['y']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_kognitif']['y']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kognitif']['y']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_kognitif']['y']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kognitif']['y']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kognitif']['y']['siap']?>=<?=$analisis['data_testing']['probabilitas_kognitif']['y']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kognitif']['y']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_kognitif']['y']['belum_siap_count']?></td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_kognitif']['t']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kognitif']['t']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_kognitif']['t']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kognitif']['t']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_kognitif']['t']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kognitif']['t']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kognitif']['t']['siap']?>=<?=$analisis['data_testing']['probabilitas_kognitif']['t']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kognitif']['t']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_kognitif']['t']['belum_siap_count']?></td>
 							</tr>
 							<tr>
 								<td rowspan="2">Sosial</td>
-								<td><?= $analisis['data_testing']['probabilitas_sosial']['y']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_sosial']['y']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_sosial']['y']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_sosial']['y']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_sosial']['y']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_sosial']['y']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_sosial']['y']['siap']?>=<?=$analisis['data_testing']['probabilitas_sosial']['y']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_sosial']['y']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_sosial']['y']['belum_siap_count']?></td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_sosial']['t']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_sosial']['t']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_sosial']['t']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_sosial']['t']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_sosial']['t']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_sosial']['t']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_sosial']['t']['siap']?>=<?=$analisis['data_testing']['probabilitas_sosial']['t']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_sosial']['t']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_sosial']['t']['belum_siap_count']?></td>
 							</tr>
 							<tr>
 								<td rowspan="2">Calistung</td>
-								<td><?= $analisis['data_testing']['probabilitas_calistung']['y']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_calistung']['y']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_calistung']['y']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_calistung']['y']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_calistung']['y']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_calistung']['y']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_calistung']['y']['siap']?>=<?=$analisis['data_testing']['probabilitas_calistung']['y']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_calistung']['y']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_calistung']['y']['belum_siap_count']?></td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_calistung']['t']['keterangan'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_calistung']['t']['siap'] ?>=<?= $analisis['data_testing']['probabilitas_calistung']['t']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_calistung']['t']['belum_siap'] ?>=<?= $analisis['data_testing']['probabilitas_calistung']['t']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_calistung']['t']['keterangan']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_calistung']['t']['siap']?>=<?=$analisis['data_testing']['probabilitas_calistung']['t']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_calistung']['t']['belum_siap']?>=<?=$analisis['data_testing']['probabilitas_calistung']['t']['belum_siap_count']?></td>
 							</tr>
 						</table>
 					</div>
@@ -434,8 +437,8 @@
 					<div class="form-group">
 						<select name="" class="form-control" id="select-anak" onchange="change_anak()">
 							<?php foreach ($data_anak as $key => $value): ?>
-								<option value="<?= $value->id_anak ?>"><?= $value->nama_anak ?></option>
-							<?php endforeach ?>
+								<option value="<?=$value->id_anak?>"><?=$value->nama_anak?></option>
+							<?php endforeach?>
 						</select>
 					</div>
 					<h3 class="box-title">Pengujian Dengan Data Murid: <span class="text-primary nama-anak-test">Nama Anak</span></h3>
@@ -456,12 +459,12 @@
 								<td class="head-atribut">Belum Siap</td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['siap'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['belum_siap'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['siap']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['belum_siap']?></td>
 							</tr>
 							<tr>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['siap_count'] ?></td>
-								<td><?= $analisis['data_testing']['probabilitas_kelas']['belum_siap_count'] ?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['siap_count']?></td>
+								<td><?=$analisis['data_testing']['probabilitas_kelas']['belum_siap_count']?></td>
 							</tr>
 						</table>
 					</div>
@@ -527,8 +530,8 @@
 						<label for="">Pendidikan Ayah</label>
 						<select name="pendidikan_ayah" class="form-control" id="pendidikan_ayah">
 							<?php foreach ($pendidikan as $key => $value): ?>
-								<option value="<?= $value ?>"><?= $value ?></option>
-							<?php endforeach ?>
+								<option value="<?=$value?>"><?=$value?></option>
+							<?php endforeach?>
 						</select>
 						<small id="helpId" class="text-muted text-error e-pendidikan_ayah"></small>
 					</div>
@@ -536,8 +539,8 @@
 						<label for="">Pendidikan Ibu</label>
 						<select name="pendidikan_ibu" class="form-control" id="pendidikan_ibu">
 							<?php foreach ($pendidikan as $key => $value): ?>
-								<option value="<?= $value ?>"><?= $value ?></option>
-							<?php endforeach ?>
+								<option value="<?=$value?>"><?=$value?></option>
+							<?php endforeach?>
 						</select>
 						<small id="helpId" class="text-muted text-error e-pendidikan_ibu"></small>
 					</div>
@@ -545,8 +548,8 @@
 						<label for="">Pekerjaan Ayah</label>
 						<select name="pekerjaan_ayah" class="form-control" id="pekerjaan_ayah">
 							<?php foreach ($pekerjaan as $key => $value): ?>
-								<option value="<?= $value ?>"><?= $value ?></option>
-							<?php endforeach ?>
+								<option value="<?=$value?>"><?=$value?></option>
+							<?php endforeach?>
 						</select>
 						<small id="helpId" class="text-muted text-error e-pekerjaan_ayah"></small>
 					</div>
@@ -554,8 +557,8 @@
 						<label for="">Pekerjaan Ibu</label>
 						<select name="pekerjaan_ibu" class="form-control" id="pekerjaan_ibu">
 							<?php foreach ($pekerjaan as $key => $value): ?>
-								<option value="<?= $value ?>"><?= $value ?></option>
-							<?php endforeach ?>
+								<option value="<?=$value?>"><?=$value?></option>
+							<?php endforeach?>
 						</select>
 						<small id="helpId" class="text-muted text-error e-pekerjaan_ibu"></small>
 					</div>
@@ -645,7 +648,7 @@
 			<div class="modal-body">
 				<form action="" id="form-ubah-foto" enctype="multipart/form-data" method="post">
 					<div class="text-center">
-						<img width="150px" src="<?= base_url('assets/icon/no_image.jpg') ?>" id="output" />
+						<img width="150px" src="<?=base_url('assets/icon/no_image.jpg')?>" id="output" />
 					</div>
 					<div class="form-group">
 						<label for="">Foto Anak</label>
@@ -738,7 +741,7 @@
 	$(document).ready(function() {
 		document.body.style.zoom = "80%";
 	});
-	let url = "<?= base_url() ?>"
+	let url = "<?=base_url()?>"
 	add_anak = () => {
 		$("#type").val("add");
 		$(".title-modal").text("Tambah Anak");
@@ -817,7 +820,7 @@
 		let nama_data = $('#nama_data').val();
 		let type = $('#type').val();
 		let id_anak = sessionStorage.getItem('id_anak');
-		let id_sample = "<?= $id_data ?>"
+		let id_sample = "<?=$id_data?>"
 		$("#form_data_anak").ajaxForm({
 			type: "POST",
 			url: url + "naivebayes/store_anak",
@@ -964,7 +967,7 @@
 
 	function change_anak() {
 		let id_anak = $('#select-anak').children("option:selected").val();
-		let id_sample = "<?= $id_data ?>";
+		let id_sample = "<?=$id_data?>";
 		sessionStorage.setItem('id_anak', id_anak);
 		$.ajax({
 			type: "POST",
@@ -1007,7 +1010,7 @@
 				$(".kognitif_view").text(response.data.kognitif);
 				$(".sosial_view").text(response.data.sosial);
 				$(".calistung_view").text(response.data.calistung);
-				$(".rekomendasi").text(`Jadi probabilitas bahwa ${response.data.nama_anak} siap masuk sekolah dasar adalah sekitar ${response.analisis}%  .`)
+				$(".rekomendasi").text(`Jadi probabilitas bahwa ${response.data.nama_anak} siap masuk sekolah dasar adalah ${response.analisis} .`)
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				Swal.fire({

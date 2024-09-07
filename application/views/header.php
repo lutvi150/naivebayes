@@ -145,7 +145,7 @@
 					<li><a href="<?=base_url('naivebayes')?>"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
 					<li><a href="<?=base_url('naivebayes/config_data/3/table')?>"><i class="fa fa-book"></i> <span>Naivebayes</span></a></li>
 					<li><a href="<?=base_url('naivebayes/config_data/3/analisis')?>"><i class="fa fa-book"></i> <span>Analisis</span></a></li>
-					<li><a href="<?=base_url('naivebayes/akurasi')?>"><i class="fa fa-book"></i> <span>Analisis</span></a></li>
+					<li><a href="<?=base_url('naivebayes/akurasi')?>"><i class="fa fa-book"></i> <span>Akurasi</span></a></li>
 
 				</ul>
 			</section>

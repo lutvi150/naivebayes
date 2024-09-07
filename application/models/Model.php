@@ -72,6 +72,9 @@ class Model extends CI_Model
 		$this->db->where('table_kemampuan_anak.' . $field, $value);
 		return $this->db->count_all_results();
 	}
+	function get_data_acuration() {
+		
+	}
 }
 
 /* End of file Database.php */
