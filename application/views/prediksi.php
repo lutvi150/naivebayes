@@ -37,7 +37,7 @@
 						Untuk melakukan preview foto anak, silahkan klik foto</p>
 				</div>
 
-				<a type="button" href="<?= base_url('naivebayes/config_data/3/table') ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Kembali</a>
+				<a type="button" href="<?= base_url('naivebayes/data_show') ?>" class="btn btn-success btn-sm"><i class="fa fa-reply"></i> Kembali</a>
 
 				<table id="tabel-1" class="table table-bordered table-striped">
 					<thead>

@@ -29,6 +29,12 @@ class Model extends CI_Model
 		$this->db->order_by($orderby, $order);
 		return $this->db->get();
 	}
+	public function get_where($table, $where)
+	{
+		$this->db->from($table);
+		$this->db->where($where);
+		return $this->db->count_all_results();
+	}
 	public function update_data($table, $data, $where, $key)
 	{
 		$this->db->where($where, $key);
@@ -72,9 +78,7 @@ class Model extends CI_Model
 		$this->db->where('table_kemampuan_anak.' . $field, $value);
 		return $this->db->count_all_results();
 	}
-	function get_data_acuration() {
-		
-	}
+	function get_data_acuration() {}
 }
 
 /* End of file Database.php */

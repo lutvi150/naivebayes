@@ -26,9 +26,10 @@
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-                    <div class="alert alert-success" role="alert">
-                        <strong>Tingkat Akurasi Naive Bayes Berdasarkan data dan prediksi yang diberikan : <?=$akurasi['persentase']?></strong>
-                    </div>
+					<div class="alert alert-success" role="alert">
+						<strong>Tingkat Akurasi Naive Bayes Berdasarkan data dan prediksi yang diberikan :
+							<?= $akurasi['persentase'] ?></strong>
+					</div>
 					<div class="col-md-4 text-center">
 
 						<h4>Akurasi Data testing</h4>
@@ -62,24 +63,24 @@
 							</tr>
 							<tr>
 								<td class="">TP</td>
-								<td class=""><?=$tp?></td>
+								<td class=""><?= $tp ?></td>
 								<td class="">Alifa naufalyn,raihan al sabda,aliya
 									husna,alfin al gifari,alya farisha</td>
 							</tr>
 							<tr>
 								<td class="">TN</td>
-								<td class=""><?=$tn?></td>
+								<td class=""><?= $tn ?></td>
 								<td class="">Sakinah,rafasha,aliya
 									husna,nazril,adelia,marya,zhafira,khaira</td>
 							</tr>
 							<tr>
 								<td class="">FP</td>
-								<td class=""><?=$fp?></td>
+								<td class=""><?= $fp ?></td>
 								<td class="">Faeza,rezaldi,andyra naifa,meisya</td>
 							</tr>
 							<tr>
 								<td class="">FN</td>
-								<td class=""><?=$fn?></td>
+								<td class=""><?= $fn ?></td>
 								<td class=""></td>
 							</tr>
 						</table>

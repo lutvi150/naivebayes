@@ -56,7 +56,7 @@
  */
 $server = $_SERVER['HTTP_HOST'];
 if ($server == 'localhost:8888') {
-	$debug = 'production';
+	$debug = 'development';
 } else if ($server == 'localhost') {
 	$debug = 'development';
 } else {

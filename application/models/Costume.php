@@ -23,28 +23,31 @@ class Costume extends CI_Model
         $this->db->order_by('table_anak.id_anak', 'desc');
         return $this->db->get()->result();
     }
-    public function get_data_prop_likehood($id_sample, $bykey, $key, $keterangan)
+    public function get_data_prop_likehood($id_sample, $bykey, $key, $keterangan, $jenis_data)
     {
         $this->db->from('table_anak');
         $this->db->where('id_sample', $id_sample);
         $this->db->where('keterangan', $keterangan);
+        $this->db->where('jenis_data', $jenis_data);
         $this->db->where($key, $bykey);
         return $this->db->count_all_results();
     }
-    public function count_by($id_sample, $field, $key)
+    public function count_by($id_sample, $field, $key, $jenis)
     {
         $this->db->from('table_anak');
         $this->db->where('id_sample', $id_sample);
+        $this->db->where('jenis_data', $jenis);
         $this->db->where($field, $key);
         return $this->db->count_all_results();
     }
-    public function count_join_ortu_by($id_sample, $key, $field, $keterangan)
+    public function count_join_ortu_by($id_sample, $key, $field, $keterangan, $jenis)
     {
         $this->db->from('table_anak');
         $this->db->join('table_orang_tua', 'table_anak.id_anak = table_orang_tua.id_anak', 'left');
         $this->db->join('table_kemampuan_anak', 'table_anak.id_anak = table_kemampuan_anak.id_anak', 'left');
         $this->db->where('table_anak.id_sample', $id_sample);
         $this->db->where('keterangan', $keterangan);
+        $this->db->where('jenis_data', $jenis);
         $this->db->where($field, $key);
         $this->db->order_by('table_anak.id_anak', 'desc');
         return $this->db->count_all_results();
@@ -77,6 +80,13 @@ class Costume extends CI_Model
         $this->db->where($where);
         $this->db->where('jenis_data', 1);
         $this->db->order_by('table_anak.id_anak', 'desc');
+        return $this->db->count_all_results();
+    }
+    function count_anak($id_sample, $where)
+    {
+        $this->db->from('table_anak');
+        $this->db->where('id_sample', $id_sample);
+        $this->db->where($where);
         return $this->db->count_all_results();
     }
 }

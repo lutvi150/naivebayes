@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `data` (
 /*!40000 ALTER TABLE `data` DISABLE KEYS */;
 INSERT INTO `data` (`id_data`, `nama_data`, `tanggal_hitung`, `jumlah_data`, `data_analisis`) VALUES
 	(2, 'Tes Data1', '2024-08-25 09:41:31', 0, NULL),
-	(3, 'tes 5', '2024-08-25 09:44:22', 0, '{"time_execution":0.01926708221435547,"id_sample":"3","data_testing":{"atribut_kelas":{"siap":42,"belum_siap":9},"atribut_jenis_kelamin":{"siap":{"laki_laki":20,"perempuan":22},"belum_siap":{"laki_laki":3,"perempuan":6}},"atribut_usia":{"siap":{"5":0,"6":42},"belum_siap":{"5":5,"6":4}},"atribut_emosional":{"y":{"siap":41,"belum_siap":7},"t":{"siap":0,"belum_siap":2}},"atribut_kognitif":{"y":{"siap":42,"belum_siap":6},"t":{"siap":0,"belum_siap":3}},"atribut_sosial":{"y":{"siap":37,"belum_siap":9},"t":{"siap":5,"belum_siap":0}},"atribut_calistung":{"y":{"siap":42,"belum_siap":6},"t":{"siap":0,"belum_siap":3}},"probabilitas_kelas":{"siap":"42\\/51","belum_siap":"9\\/51","siap_count":0.8235,"belum_siap_count":0.1765},"probabilitas_jenis_kelamin":{"laki_laki":{"jenis_kelamin":"laki-laki","siap":"20\\/42","belum_siap":"3\\/9","siap_count":0.4762,"belum_siap_count":0.3333},"perempuan":{"jenis_kelamin":"perempuan","siap":"22\\/42","belum_siap":"6\\/9","siap_count":0.5238,"belum_siap_count":0.6667}},"probabilitas_usia":{"5":{"keterangan":"5 Tahun","siap":"0\\/42","belum_siap":"5\\/9","siap_count":0,"belum_siap_count":0.5556},"6":{"keterangan":"6 Tahun","siap":"42\\/42","belum_siap":"4\\/9","siap_count":1,"belum_siap_count":0.4444}},"probabilitas_emosional":{"y":{"keterangan":"Ya","siap":"41\\/42","belum_siap":"7\\/9","siap_count":0.9762,"belum_siap_count":0.7778},"t":{"keterangan":"Tidak","siap":"0\\/42","belum_siap":"2\\/9","siap_count":0,"belum_siap_count":0.2222}},"probabilitas_kognitif":{"y":{"keterangan":"Ya","siap":"42\\/42","belum_siap":"6\\/9","siap_count":1,"belum_siap_count":0.6667},"t":{"keterangan":"Tidak","siap":"0\\/42","belum_siap":"3\\/9","siap_count":0,"belum_siap_count":0.3333}},"probabilitas_sosial":{"y":{"keterangan":"Ya","siap":"37\\/42","belum_siap":"9\\/9","siap_count":0.881,"belum_siap_count":1},"t":{"keterangan":"Tidak","siap":"5\\/42","belum_siap":"0\\/9","siap_count":0.119,"belum_siap_count":0}},"probabilitas_calistung":{"y":{"keterangan":"Ya","siap":"42\\/42","belum_siap":"6\\/9","siap_count":1,"belum_siap_count":0.6667},"t":{"keterangan":"Tidak","siap":"0\\/42","belum_siap":"3\\/9","siap_count":0,"belum_siap_count":0.3333}}}}');
+	(3, 'tes 5', '2024-08-25 09:44:22', 0, '{"time_execution":0.009029865264892578,"id_sample":3,"data":{"atribut_kelas":{"siap":0,"belum_siap":0},"atribut_jenis_kelamin":{"siap":{"laki_laki":0,"perempuan":0},"belum_siap":{"laki_laki":0,"perempuan":0}},"atribut_usia":{"siap":{"5":0,"6":0},"belum_siap":{"5":0,"6":0}},"atribut_emosional":{"y":{"siap":0,"belum_siap":0},"t":{"siap":0,"belum_siap":0}},"atribut_kognitif":{"y":{"siap":0,"belum_siap":0},"t":{"siap":0,"belum_siap":0}},"atribut_sosial":{"y":{"siap":0,"belum_siap":0},"t":{"siap":0,"belum_siap":0}},"atribut_calistung":{"y":{"siap":0,"belum_siap":0},"t":{"siap":0,"belum_siap":0}},"probabilitas_kelas":{"siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0},"probabilitas_jenis_kelamin":{"laki_laki":{"jenis_kelamin":"laki-laki","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0},"perempuan":{"jenis_kelamin":"perempuan","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0}},"probabilitas_usia":{"5":{"keterangan":"5 Tahun","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0},"6":{"keterangan":"6 Tahun","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0}},"probabilitas_emosional":{"y":{"keterangan":"Ya","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0},"t":{"keterangan":"Tidak","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0}},"probabilitas_kognitif":{"y":{"keterangan":"Ya","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0},"t":{"keterangan":"Tidak","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0}},"probabilitas_sosial":{"y":{"keterangan":"Ya","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0},"t":{"keterangan":"Tidak","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0}},"probabilitas_calistung":{"y":{"keterangan":"Ya","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0},"t":{"keterangan":"Tidak","siap":"0\\/0","belum_siap":"0\\/0","siap_count":0,"belum_siap_count":0}}}}');
 /*!40000 ALTER TABLE `data` ENABLE KEYS */;
 
 -- Dumping structure for table naivebayes.table_anak
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `table_anak` (
   PRIMARY KEY (`id_anak`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
--- Dumping data for table naivebayes.table_anak: ~50 rows (approximately)
+-- Dumping data for table naivebayes.table_anak: ~49 rows (approximately)
 /*!40000 ALTER TABLE `table_anak` DISABLE KEYS */;
 INSERT INTO `table_anak` (`id_anak`, `id_sample`, `nama_anak`, `jenis_kelamin`, `umur`, `jenis_data`, `nst`, `keterangan`, `foto_anak`) VALUES
 	(3, 3, 'ALIFA NAUFALYN', 'P', 6, '1', 65, 'SIAP', NULL),
@@ -108,9 +108,9 @@ CREATE TABLE IF NOT EXISTS `table_kemampuan_anak` (
   `sosial` varchar(2) DEFAULT NULL,
   `calistung` varchar(2) DEFAULT NULL,
   PRIMARY KEY (`id_kemampuan`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
--- Dumping data for table naivebayes.table_kemampuan_anak: ~54 rows (approximately)
+-- Dumping data for table naivebayes.table_kemampuan_anak: ~53 rows (approximately)
 /*!40000 ALTER TABLE `table_kemampuan_anak` DISABLE KEYS */;
 INSERT INTO `table_kemampuan_anak` (`id_kemampuan`, `id_anak`, `emosional`, `kognitif`, `sosial`, `calistung`) VALUES
 	(1, 3, 'Y', 'Y', 'Y', 'Y'),
@@ -167,7 +167,8 @@ INSERT INTO `table_kemampuan_anak` (`id_kemampuan`, `id_anak`, `emosional`, `kog
 	(52, 54, 'Y', 'Y', 'Y', 'Y'),
 	(53, 55, 'Y', 'Y', 'Y', 'Y'),
 	(54, 56, 'Y', 'Y', 'Y', 'Y'),
-	(55, 57, 'Y', 'Y', 'Y', 'Y');
+	(55, 57, 'Y', 'Y', 'Y', 'Y'),
+	(56, 58, 'Y', 'Y', 'Y', 'Y');
 /*!40000 ALTER TABLE `table_kemampuan_anak` ENABLE KEYS */;
 
 -- Dumping structure for table naivebayes.table_orang_tua
@@ -183,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `table_orang_tua` (
   PRIMARY KEY (`id_orang_tua`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
--- Dumping data for table naivebayes.table_orang_tua: ~50 rows (approximately)
+-- Dumping data for table naivebayes.table_orang_tua: ~49 rows (approximately)
 /*!40000 ALTER TABLE `table_orang_tua` DISABLE KEYS */;
 INSERT INTO `table_orang_tua` (`id_orang_tua`, `id_anak`, `nama_ayah`, `nama_ibu`, `pendidikan_ayah`, `pendidikan_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`) VALUES
 	(3, 3, 'MISWAR', 'NURI HIDAYATI', 'SMA', 'SMA', 'PETANI', 'IRT'),
@@ -200,7 +201,7 @@ INSERT INTO `table_orang_tua` (`id_orang_tua`, `id_anak`, `nama_ayah`, `nama_ibu
 	(14, 14, 'SABDIN', 'MASTANI', 'S1', 'S1', 'GURU', 'GURU'),
 	(15, 15, 'DIAN', 'JUNIA', 'SMA', 'SMA', 'PETANI', 'IRT'),
 	(16, 16, 'DANI', 'MAIMUNAH', 'SMA', 'SMA', 'PETANI', 'IRT'),
-	(17, 17, 'ARMAN', 'MALA', 'SMA', 'SMA', 'PETANI', 'PERAWAT'),
+	(17, 17, 'ARMAN', 'MALA', 'SMA', 'SMA', 'PETANI', 'IRT'),
 	(18, 18, 'JAFAR', 'MULYANI', 'SMA', 'SMA', 'PETANI', 'IRT'),
 	(19, 19, 'SYUKURDI', 'RAHMA', 'SMA', 'SMA', 'PETANI', 'IRT'),
 	(23, 23, 'DIKI', 'AIDA', 'SMA', 'SMA', 'PETANI', 'IRT'),
