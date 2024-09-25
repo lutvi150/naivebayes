@@ -63,7 +63,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-4 text-center"> 
 
                         <h4>Atribut Usia</h4>
                         <table class="table text-center table-bordered atribut-jenis-kelamin">
@@ -84,90 +84,92 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-md-3 text-center">
+                    <?php if ($jenis == 1) : ?>
+                        <div class="col-md-3 text-center">
 
-                        <h4>Atribut Emosional</h4>
-                        <table class="table text-center table-bordered atribut-jenis-kelamin">
-                            <tr>
-                                <td class="head-atribut">Emosional</td>
-                                <td class="head-atribut">Siap</td>
-                                <td class="head-atribut">Belum Siap</td>
-                            </tr>
-                            <tr>
-                                <td>Ya</td>
-                                <td><?= $analisis['data']['atribut_emosional']['y']['siap'] ?></td>
-                                <td><?= $analisis['data']['atribut_emosional']['y']['belum_siap'] ?></td>
-                            </tr>
-                            <tr>
-                                <td>Tidak</td>
-                                <td><?= $analisis['data']['atribut_emosional']['t']['siap'] ?></td>
-                                <td><?= $analisis['data']['atribut_emosional']['t']['belum_siap'] ?></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-3 text-center">
+                            <h4>Atribut Emosional</h4>
+                            <table class="table text-center table-bordered atribut-jenis-kelamin">
+                                <tr>
+                                    <td class="head-atribut">Emosional</td>
+                                    <td class="head-atribut">Siap</td>
+                                    <td class="head-atribut">Belum Siap</td>
+                                </tr>
+                                <tr>
+                                    <td>Ya</td>
+                                    <td><?= $analisis['data']['atribut_emosional']['y']['siap'] ?></td>
+                                    <td><?= $analisis['data']['atribut_emosional']['y']['belum_siap'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Tidak</td>
+                                    <td><?= $analisis['data']['atribut_emosional']['t']['siap'] ?></td>
+                                    <td><?= $analisis['data']['atribut_emosional']['t']['belum_siap'] ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-3 text-center">
 
-                        <h4>Atribut Kognitif</h4>
-                        <table class="table text-center table-bordered atribut-jenis-kelamin">
-                            <tr>
-                                <td class="head-atribut">Kognitif</td>
-                                <td class="head-atribut">Siap</td>
-                                <td class="head-atribut">Belum Siap</td>
-                            </tr>
-                            <tr>
-                                <td>Ya</td>
-                                <td><?= $analisis['data']['atribut_kognitif']['y']['siap'] ?></td>
-                                <td><?= $analisis['data']['atribut_kognitif']['y']['belum_siap'] ?></td>
-                            </tr>
-                            <tr>
-                                <td>Tidak</td>
-                                <td><?= $analisis['data']['atribut_kognitif']['t']['siap'] ?></td>
-                                <td><?= $analisis['data']['atribut_kognitif']['t']['belum_siap'] ?></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-3 text-center">
+                            <h4>Atribut Kognitif</h4>
+                            <table class="table text-center table-bordered atribut-jenis-kelamin">
+                                <tr>
+                                    <td class="head-atribut">Kognitif</td>
+                                    <td class="head-atribut">Siap</td>
+                                    <td class="head-atribut">Belum Siap</td>
+                                </tr>
+                                <tr>
+                                    <td>Ya</td>
+                                    <td><?= $analisis['data']['atribut_kognitif']['y']['siap'] ?></td>
+                                    <td><?= $analisis['data']['atribut_kognitif']['y']['belum_siap'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Tidak</td>
+                                    <td><?= $analisis['data']['atribut_kognitif']['t']['siap'] ?></td>
+                                    <td><?= $analisis['data']['atribut_kognitif']['t']['belum_siap'] ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-3 text-center">
 
-                        <h4>Atribut Sosial</h4>
-                        <table class="table text-center table-bordered atribut-jenis-kelamin">
-                            <tr>
-                                <td class="head-atribut">Sosial</td>
-                                <td class="head-atribut">Siap</td>
-                                <td class="head-atribut">Belum Siap</td>
-                            </tr>
-                            <tr>
-                                <td>Ya</td>
-                                <td><?= $analisis['data']['atribut_sosial']['y']['siap'] ?></td>
-                                <td><?= $analisis['data']['atribut_sosial']['y']['belum_siap'] ?></td>
-                            </tr>
-                            <tr>
-                                <td>Tidak</td>
-                                <td><?= $analisis['data']['atribut_sosial']['t']['siap'] ?></td>
-                                <td><?= $analisis['data']['atribut_sosial']['t']['belum_siap'] ?></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-3 text-center">
+                            <h4>Atribut Sosial</h4>
+                            <table class="table text-center table-bordered atribut-jenis-kelamin">
+                                <tr>
+                                    <td class="head-atribut">Sosial</td>
+                                    <td class="head-atribut">Siap</td>
+                                    <td class="head-atribut">Belum Siap</td>
+                                </tr>
+                                <tr>
+                                    <td>Ya</td>
+                                    <td><?= $analisis['data']['atribut_sosial']['y']['siap'] ?></td>
+                                    <td><?= $analisis['data']['atribut_sosial']['y']['belum_siap'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Tidak</td>
+                                    <td><?= $analisis['data']['atribut_sosial']['t']['siap'] ?></td>
+                                    <td><?= $analisis['data']['atribut_sosial']['t']['belum_siap'] ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-3 text-center">
 
-                        <h4>Atribut Calistung</h4>
-                        <table class="table text-center table-bordered atribut-jenis-kelamin">
-                            <tr>
-                                <td class="head-atribut">Calistung</td>
-                                <td class="head-atribut">Siap</td>
-                                <td class="head-atribut">Belum Siap</td>
-                            </tr>
-                            <tr>
-                                <td>Ya</td>
-                                <td><?= $analisis['data']['atribut_calistung']['y']['siap'] ?></td>
-                                <td><?= $analisis['data']['atribut_calistung']['y']['belum_siap'] ?></td>
-                            </tr>
-                            <tr>
-                                <td>Tidak</td>
-                                <td><?= $analisis['data']['atribut_calistung']['t']['siap'] ?></td>
-                                <td><?= $analisis['data']['atribut_calistung']['t']['belum_siap'] ?></td>
-                            </tr>
-                        </table>
-                    </div>
+                            <h4>Atribut Calistung</h4>
+                            <table class="table text-center table-bordered atribut-jenis-kelamin">
+                                <tr>
+                                    <td class="head-atribut">Calistung</td>
+                                    <td class="head-atribut">Siap</td>
+                                    <td class="head-atribut">Belum Siap</td>
+                                </tr>
+                                <tr>
+                                    <td>Ya</td>
+                                    <td><?= $analisis['data']['atribut_calistung']['y']['siap'] ?></td>
+                                    <td><?= $analisis['data']['atribut_calistung']['y']['belum_siap'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Tidak</td>
+                                    <td><?= $analisis['data']['atribut_calistung']['t']['siap'] ?></td>
+                                    <td><?= $analisis['data']['atribut_calistung']['t']['belum_siap'] ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                    <?php endif; ?>
                     <div class="col-md-4 text-center">
 
                         <h4>Probalitas Kelas</h4>
@@ -187,7 +189,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-4 text-center" hidden>
 
                         <h4>Nilai P (Ci)</h4>
                         <table class="table text-center table-bordered atribut-jenis-kelamin">

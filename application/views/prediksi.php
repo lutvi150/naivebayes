@@ -78,9 +78,6 @@
 										<tr>
 											<td class="text-center nama-anak"><?= $value->data_anak->nama_anak ?></td>
 										</tr>
-										<tr>
-											<td> <button class="btn btn-success btn-xs" onclick="ubah_foto(<?= $value->data_anak->id_anak ?>)">Ubah Foto</button></td>
-										</tr>
 									</table>
 								</td>
 								<td><?= $value->data_anak->jenis_kelamin ?></td>
@@ -122,16 +119,21 @@
 											<td>:</td>
 											<td><?= $value->probabilitas['siap'] ?></td>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td>Belum</td>
 											<td>:</td>
 											<td><?= $value->probabilitas['belum'] ?></td>
-										</tr>
+										</tr> -->
 										<tr>
 											<?php $tanda = $value->probabilitas['siap'] > $value->probabilitas['belum'] ? " > " : " < "; ?>
 											<td>Analisa</td>
 											<td>:</td>
 											<td colspan="3"><?= $value->probabilitas['siap'] . $tanda . $value->probabilitas['belum'] ?></td>
+										</tr>
+										<tr>
+											<td>Persentase Siap</td>
+											<td>:</td>
+										<td><?= (round($value->probabilitas['siap'], 4)) * 100  ?>%</button></td>
 										</tr>
 										<tr>
 											<td>Kesimpulan</td>
@@ -219,7 +221,7 @@
 						<td class="calistung_view"></td>
 					</tr>
 				</table>
-				<div class="alert alert-success " role="alert">
+				<div id="show-alert" class="alert alert-success " role="alert">
 					<span class="rekomendasi"></span>
 				</div>
 			</div>
@@ -259,31 +261,15 @@
 				$(".kognitif_view").text(response.data.kognitif);
 				$(".sosial_view").text(response.data.sosial);
 				$(".calistung_view").text(response.data.calistung);
-				$(".rekomendasi").text(`Jadi probabilitas bahwa ${response.data.nama_anak} siap masuk sekolah dasar adalah sekitar ${response.analisis}%  .`)
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				Swal.fire({
-					icon: 'error',
-					title: 'Gagal',
-					text: 'Check your internet connection!',
-					showConfirmButton: false,
-					timer: 1500
-				})
-
-			}
-		});
-	}
-	update_jenis = (id_anak) => {
-		$.ajax({
-			type: "POST",
-			url: url + "naivebayes/update_jenis_data",
-			data: {
-				id_anak: id_anak
-			},
-			dataType: "JSON",
-			success: function(response) {
-				console.log(response);
-
+				let message;
+				if (response.analisis == "SIAP") {
+					$("#show-alert").removeClass("alert-danger").addClass("alert-success");
+					message = `Jadi probabilitas bahwa ${response.data.nama_anak} siap masuk sekolah dasar adalah ${response.siap} %`
+				} else {
+					$("#show-alert").removeClass("alert-success").addClass("alert-danger");
+					message = `Jadi probabilitas bahwa ${response.data.nama_anak} tidak siap masuk sekolah dasar adalah ${response.tidak} %`
+				}
+				$(".rekomendasi").text(message);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				Swal.fire({

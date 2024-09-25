@@ -43,6 +43,8 @@
 
 					<a type="button" href="<?= base_url('naivebayes') ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Kembali</a>
 					<a type="button" href="<?= base_url('naivebayes/prediksi') ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Analisis Data</a>
+					<a href="<?= base_url('naivebayes/data_show') ?>" class="btn <?= $jenis == 'training' ? 'btn-success' : 'btn-warning' ?> btn-sm"><i class="fa fa-eye"></i> Data Training</a>
+					<a href="<?= base_url('naivebayes/data_show/testing') ?>" class="btn <?= $jenis == 'testing' ? 'btn-success' : 'btn-warning' ?> btn-sm"><i class="fa fa-eye"></i> Data Testing</a>
 
 					<table id="tabel-1" class="table table-bordered table-striped">
 						<thead>
@@ -133,7 +135,7 @@
 
 										<td>
 											<button class="btn btn-danger btn-sm" onclick="delete_data(<?= $value->id_anak ?>)"><i class="fa fa-trash"></i></button>
-											<button class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
+											<button class="btn btn-warning btn-sm" onclick="edit_data(<?= $value->id_anak ?>)"><i class="fa fa-edit"></i></button>
 											<button class="btn btn-success btn-sm"><i class="fa fa-upload"></i></button>
 											<button class="btn btn-success btn-sm" onclick="show_data('<?= $value->id_anak ?><')"><i class="fa fa-eye"></i></button>
 										</td>
@@ -196,7 +198,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Nama Ibu</label>
-						<input type="text" name="nama_ibu" id="nama_ayah" class="form-control" placeholder="" aria-describedby="helpId">
+						<input type="text" name="nama_ibu" id="nama_ibu" class="form-control" placeholder="" aria-describedby="helpId">
 						<small id="helpId" class="text-muted text-error e-nama_ibu"></small>
 					</div>
 
@@ -400,7 +402,7 @@
 						<td class="calistung_view"></td>
 					</tr>
 				</table>
-				<div class="alert alert-success " role="alert">
+				<div id="show-alert" class="alert alert-success " role="alert">
 					<span class="rekomendasi"></span>
 				</div>
 			</div>
@@ -489,6 +491,67 @@
 			URL.revokeObjectURL(output.src) // free memory
 		}
 	};
+	edit_data = (id_anak) => {
+		sessionStorage.setItem('id_anak', id_anak);
+		$.ajax({
+			type: "POST",
+			url: url + "naivebayes/edit_data_anak",
+			data: {
+				id_anak: id_anak
+			},
+			dataType: "JSON",
+			success: function(response) {
+				if (response.status == 'success') {
+					$("#type").val("edit");
+					$(".title-modal").text("Edit Data Anak");
+					let jenis_kelamin;
+					if (response.data.jenis_kelamin == 'L') {
+						jenis_kelamin = `<option selected value="L">Laki-laki</option><option value="P">Perempuan</option>`
+					} else {
+						jenis_kelamin = `<option value="L">Laki-laki</option><option selected value="P">Perempuan</option>`
+					}
+					let keterangan;
+					if (response.data.keterangan == 'SIAP') {
+						keterangan = `<option selected value="SIAP">SIAP</option><option value="BELUM">BELUM SIAP</option>`
+					} else {
+						keterangan = `<option value="SIAP">SIAP</option><option selected value="BELUM">BELUM SIAP</option>`
+					}
+					let pekerjaan_ayah;
+					let pekerjaan_ibu;
+					$.each(response.pekerjaan, function(indexInArray, valueOfElement) {
+						pekerjaan_ayah += `<option ${response.data.pekerjaan_ayah == valueOfElement ? "selected" : "" } value="${valueOfElement}">${valueOfElement}</option>`;
+						pekerjaan_ibu += `<option ${response.data.pekerjaan_ibu == valueOfElement ? "selected" : "" } value="${valueOfElement}">${valueOfElement}</option>`;
+					});
+					let pendidikan_ibu;
+					let pendidikan_ayah;
+					$.each(response.pendidikan, function(indexInArray, valueOfElement) {
+						pendidikan_ibu += `<option ${response.data.pendidikan_ibu == valueOfElement ? "selected" : "" } value="${valueOfElement}">${valueOfElement}</option>`;
+						pendidikan_ayah += `<option ${response.data.pendidikan_ayah == valueOfElement ? "selected" : "" } value="${valueOfElement}">${valueOfElement}</option>`;
+					});
+					$("#nama_anak").val(response.data.nama_anak);
+					$("#jenis_kelamin").html(jenis_kelamin);
+					$("#umur").val(response.data.umur);
+					$("#nama_ayah").val(response.data.nama_ayah);
+					$("#nama_ibu").val(response.data.nama_ibu);
+					$("#pendidikan_ayah").html(pendidikan_ayah);
+					$("#pendidikan_ibu").html(pendidikan_ibu);
+					$("#pekerjaan_ayah").html(pekerjaan_ayah);
+					$("#pekerjaan_ibu").html(pekerjaan_ibu);
+					$("#nst").val(response.data.nst);
+					$("#keterangan").html(keterangan);
+					$('#add-anak').modal('show');
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Something went wrong!',
+				})
+				console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+			}
+		});
+	}
 	store_data = () => {
 		$(".text-error").text("");
 		let nama_data = $('#nama_data').val();
@@ -684,7 +747,15 @@
 				$(".kognitif_view").text(response.data.kognitif);
 				$(".sosial_view").text(response.data.sosial);
 				$(".calistung_view").text(response.data.calistung);
-				$(".rekomendasi").text(`Jadi probabilitas bahwa ${response.data.nama_anak} siap masuk sekolah dasar adalah ${response.analisis} .`)
+				let message;
+				if (response.analisis == "SIAP") {
+					$("#show-alert").removeClass("alert-danger").addClass("alert-success");
+					message = `Jadi probabilitas bahwa ${response.data.nama_anak} siap masuk sekolah dasar adalah ${response.siap} %`
+				} else {
+					$("#show-alert").removeClass("alert-success").addClass("alert-danger");
+					message = `Jadi probabilitas bahwa ${response.data.nama_anak} tidak siap masuk sekolah dasar adalah ${response.tidak} %`
+				}
+				$(".rekomendasi").text(message);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				Swal.fire({

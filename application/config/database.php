@@ -81,7 +81,7 @@ if ($server == 'localhost:8888') {
 	$password = '';
 } else {
 	$username = 'teamclov_clover';
-	$database = 'teamclov_demo_5';
+	$database = 'teamclov_demo_4';
 	$password = 'teamclov_clover';
 }
 $active_group = 'default';
