@@ -37,7 +37,7 @@
 						Untuk melakukan preview foto anak, silahkan klik foto</p>
 				</div>
 
-				<a type="button" href="<?= base_url('naivebayes/data_show') ?>" class="btn btn-success btn-sm"><i class="fa fa-reply"></i> Kembali</a>
+				<a type="button" href="<?= base_url('naivebayes/data_show/' . $id_data) ?>" class="btn btn-success btn-sm"><i class="fa fa-reply"></i> Kembali</a>
 
 				<table id="tabel-1" class="table table-bordered table-striped">
 					<thead>
@@ -112,12 +112,13 @@
 									</table>
 								</td>
 								<td><?= $value->data_anak->keterangan ?></td>
+								<?php $pembulatan = (int)$this->session->userdata('hitungan') == null ? 2 : (int)$this->session->userdata('hitungan'); ?>
 								<td style="width:20%">
 									<table>
 										<tr>
 											<td>Siap</td>
 											<td>:</td>
-											<td><?= $value->probabilitas['siap'] ?></td>
+											<td><?= sprintf('%.' . $pembulatan . 'f', $value->probabilitas['siap']) ?></td>
 										</tr>
 										<!-- <tr>
 											<td>Belum</td>
@@ -125,15 +126,16 @@
 											<td><?= $value->probabilitas['belum'] ?></td>
 										</tr> -->
 										<tr>
-											<?php $tanda = $value->probabilitas['siap'] > $value->probabilitas['belum'] ? " > " : " < "; ?>
+											<?php $tanda = $value->probabilitas['siap'] > $value->probabilitas['belum'] ? " > " : " < ";
+											?>
 											<td>Analisa</td>
 											<td>:</td>
-											<td colspan="3"><?= $value->probabilitas['siap'] . $tanda . $value->probabilitas['belum'] ?></td>
+											<td colspan="3"><?= sprintf('%.' . $pembulatan . 'f', $value->probabilitas['siap']) . $tanda . sprintf('%.' . $pembulatan . 'f', $value->probabilitas['belum']) ?></td>
 										</tr>
 										<tr>
 											<td>Persentase Siap</td>
 											<td>:</td>
-										<td><?= (round($value->probabilitas['siap'], 4)) * 100  ?>%</button></td>
+											<td><?= (round($value->probabilitas['siap'], 4)) * 100  ?>%</button></td>
 										</tr>
 										<tr>
 											<td>Kesimpulan</td>

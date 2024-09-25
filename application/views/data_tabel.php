@@ -32,7 +32,8 @@
                                 <th>No.</th>
                                 <th>Nama Data</th>
                                 <th>Tanggal Hitung</th>
-                                <th>Jumlah Sample</th>
+                                <th>Data Testing</th>
+                                <th>Data Training</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -43,11 +44,12 @@
                                         <td style="width: 5%;"><?= $key + 1 ?></td>
                                         <td><?= $value->nama_data ?></td>
                                         <td><?= $value->tanggal_hitung ?></td>
-                                        <td><?= $value->jumlah_data ?></td>
+                                        <td><?= $value->testing ?></td>
+                                        <td><?= $value->training ?></td>
                                         <td style="width: 20%;">
                                             <button type="button" class="btn btn-danger btn-sm" onclick="delete_data('<?= $value->id_data ?>')"><i class="fa fa-trash"></i> Hapus </button>
                                             <button type="button" onclick="show_form_edit('<?= $value->id_data ?>','<?= $value->nama_data ?>')" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit </button>
-                                            <a href="<?= base_url("naivebayes/config_data/" . $value->id_data) ?>" type="button" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> DataSheet</a>
+                                            <a href="<?= base_url("naivebayes/data_show/" . $value->id_data) ?>" type="button" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> DataSheet</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

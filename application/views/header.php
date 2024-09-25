@@ -143,7 +143,7 @@
 					<li class="header">MAIN NAVIGATION</li>
 
 					<li><a href="<?= base_url('naivebayes') ?>"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-					<li><a href="<?= base_url('naivebayes/data_show') ?>"><i class="fa fa-book"></i> <span>Naivebayes</span></a></li>
+					<li><a href="<?= base_url('naivebayes/tabel_data') ?>"><i class="fa fa-book"></i> <span>Naivebayes</span></a></li>
 					<li><a href="<?= base_url('naivebayes/analisis') ?>"><i class="fa fa-book"></i> <span>Analisis</span></a></li>
 					<li><a href="<?= base_url('naivebayes/akurasi') ?>"><i class="fa fa-book"></i> <span>Akurasi</span></a></li>
 

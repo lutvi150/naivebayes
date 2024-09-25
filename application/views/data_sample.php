@@ -41,10 +41,11 @@
 
 					<button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Import Data Anak</button>
 
-					<a type="button" href="<?= base_url('naivebayes') ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Kembali</a>
-					<a type="button" href="<?= base_url('naivebayes/prediksi') ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Analisis Data</a>
-					<a href="<?= base_url('naivebayes/data_show') ?>" class="btn <?= $jenis == 'training' ? 'btn-success' : 'btn-warning' ?> btn-sm"><i class="fa fa-eye"></i> Data Training</a>
-					<a href="<?= base_url('naivebayes/data_show/testing') ?>" class="btn <?= $jenis == 'testing' ? 'btn-success' : 'btn-warning' ?> btn-sm"><i class="fa fa-eye"></i> Data Testing</a>
+					<a type="button" href="<?= base_url('naivebayes/tabel_data') ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Kembali</a>
+					<a type="button" href="<?= base_url('naivebayes/prediksi/' . $id_data) ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Analisis Data</a>
+					<a type="button" href="#" onclick="priview_analisis();" class="btn btn-info btn-sm"><i class="fa fa-wrench"></i> Setting Analisis</a>
+					<a href="<?= base_url('naivebayes/data_show/' . $id_data) ?>" class="btn <?= $jenis == 'training' ? 'btn-success' : 'btn-warning' ?> btn-sm"><i class="fa fa-eye"></i> Data Training</a>
+					<a href="<?= base_url('naivebayes/data_show/' . $id_data . '/testing') ?>" class="btn <?= $jenis == 'testing' ? 'btn-success' : 'btn-warning' ?> btn-sm"><i class="fa fa-eye"></i> Data Testing</a>
 
 					<table id="tabel-1" class="table table-bordered table-striped">
 						<thead>
@@ -412,6 +413,40 @@
 		</div>
 	</div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="priview-analisis" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Pilih detail hitungan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-info" role="alert">
+					<strong>Info</strong>
+					<ul>
+						<li>Rentang perhitungan adalah mulai dari 4 di belakang koma sampai dengan 20 angka di belakang koma</li>
+					</ul>
+				</div>
+				<div class="form-group">
+					<label for="">Pembulatan Angkat Hasil Hitung</label><input type="number" class="form-control" name="hitungan" value="<?= $this->session->userdata('hitungan') ?>">
+					<small id="helpId" class="text-muted text-error e-hitungan">Rentang angka yang bisa di gunakan adalah 4 sampai dengan 20</small>
+				</div>
+
+				<div class="form-group">
+					<label for="">Rentang</label><input type="text" value="<?= $this->session->userdata('rentang') ?>" class="form-control" name="rentang">
+					<small id="helpId" class="text-muted text-error e-hitungan">Rentang Akurasi</small>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+				<button type="button" class="btn btn-primary" onclick="store_count_analisis()">Simpan</button>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- /.content -->
 <script>
 	$(document).ready(function() {
@@ -702,7 +737,7 @@
 		}).submit();
 	}
 
-	function change_anak() {
+	change_anak = () => {
 		let id_anak = $('#select-anak').children("option:selected").val();
 		let id_sample = "<?= $id_data ?>";
 		sessionStorage.setItem('id_anak', id_anak);
@@ -780,6 +815,42 @@
 			success: function(response) {
 				console.log(response);
 
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				Swal.fire({
+					icon: 'error',
+					title: 'Gagal',
+					text: 'Check your internet connection!',
+					showConfirmButton: false,
+					timer: 1500
+				})
+
+			}
+		});
+	}
+	priview_analisis = () => {
+		$("#priview-analisis").modal('show');
+	}
+	store_count_analisis = () => {
+		$.ajax({
+			type: "POST",
+			url: url + "naivebayes/hitungan_analisis",
+			data: {
+				hitungan: $("[name='hitungan']").val(),
+				rentang: $("[name='rentang']").val(),
+			},
+			dataType: "JSON",
+			success: function(response) {
+				if (response.status == 'success') {
+					$("#priview-analisis").modal('hide');
+					Swal.fire({
+						icon: 'success',
+						title: 'Berhasil',
+						text: response.message,
+						showConfirmButton: false,
+						timer: 1500
+					});
+				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				Swal.fire({

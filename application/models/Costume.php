@@ -77,9 +77,10 @@ class Costume extends CI_Model
         $this->db->order_by('table_anak.id_anak', 'desc');
         return $this->db->get()->result();
     }
-    public function get_data_anak_analisis()
+    public function get_data_anak_analisis($id_data)
     {
         $this->db->from('table_anak');
+        $this->db->where('id_sample', $id_data);
         $this->db->where('jenis_data', 1);
         $this->db->select('id_anak');
         return $this->db->get()->result();

@@ -31,10 +31,61 @@ class Naivebayes extends CI_Controller
         $this->load->view($data['content'], $data);
         $this->load->view('footer', $data, false);
     }
-    public function data_show($jenis = null)
+    function tabel_data()
     {
-        $id_data = 3;
+        $data['title'] = 'Data Uji';
+        $data['content'] = 'data_tabel';
+        $check_data = $this->model->get_data('data', 'id_data', 'desc')->result();
+        $result = [];
+        if ($check_data) {
+            foreach ($check_data as $key => $value) {
+                $result[] = $value;
+                $value->{'testing'} = $this->model->get_where('table_anak', ['id_sample' => $value->id_data, 'jenis_data' => 1]);
+                $value->{'training'} = $this->model->get_where('table_anak', ['id_sample' => $value->id_data, 'jenis_data' => 0]);
+            }
+            $data['result'] = $result;
+            $data['status'] = 'already_exist';
+        } else {
+            $data['status'] = 'not_exist';
+        }
+        // echo json_encode($data);
+        // exit;
+        $this->menu($data);
+    }
+    public function store_data_name()
+    {
+        $this->form_validation->set_rules('nama_data', 'Nama Data', 'trim|required', [
+            'required' => 'Nama Data tidak boleh kosong',
+        ]);
 
+        if ($this->form_validation->run() == true) {
+            $insert = [
+                'nama_data' => $this->input->post('nama_data'),
+                'tanggal_hitung' => (date('Y-m-d H:i:s')),
+                'jumlah_data' => 0,
+            ];
+            if ($this->input->post('type') == 'add') {
+                $data = $this->model->insert('data', $insert);
+                $message = 'Data berhasil disimpan';
+            } else {
+                $data = $this->model->update_data('data', $insert, 'id_data', $this->input->post('id_data'));
+                $message = 'Data berhasil diubah';
+            }
+            $response = [
+                'status' => 'success',
+                'message' => $message,
+                'data' => $data,
+            ];
+        } else {
+            $response = [
+                'status' => 'validation_failed',
+                'message' => $this->form_validation->error_array(),
+            ];
+        }
+        echo json_encode($response);
+    }
+    public function data_show($id_data, $jenis = null)
+    {
         $data['jenis'] = $jenis == null ? "training" : "testing";
         $data['title'] = 'Naive Bayes';
         $data['content'] = 'data_sample';
@@ -48,6 +99,25 @@ class Naivebayes extends CI_Controller
         // echo json_encode($data);
         // exit;
         $this->menu($data);
+    }
+    function hitungan_analisis()
+    {
+        $hitungan = $this->input->post('hitungan');
+        $rentang = $this->input->post('rentang');
+        $this->session->set_userdata('rentang', $rentang);
+        $this->session->set_userdata('hitungan', $hitungan);
+
+        if ($hitungan >= 2 && $hitungan <= 100) {
+            $response = [
+                'status' => 'success',
+            ];
+        } else {
+            $response = [
+                'status' => 'validation_failed',
+                'message' => 'rentang setting yang bisa di gunakan adalah dari 2 sampai dengan 20'
+            ];
+        }
+        echo json_encode($response);
     }
     public function analisa($id_sample, $jenis)
     {
@@ -212,12 +282,12 @@ class Naivebayes extends CI_Controller
             ],
             'atribut_usia' => [
                 'siap' => [
-                    '5' => $_5_s,
-                    '6' => $_6_s,
+                    'usia_5' => $_5_s,
+                    'usia_6' => $_6_s,
                 ],
                 'belum_siap' => [
-                    '5' => $_5_b,
-                    '6' => $_6_b,
+                    'usia_5' => $_5_b,
+                    'usi_6' => $_6_b,
                 ],
             ],
             'atribut_emosional' => [
@@ -422,30 +492,39 @@ class Naivebayes extends CI_Controller
         $persen = $result * 100;
         return $persen;
     }
-    public function prediksi()
+    public function prediksi($id_data)
     {
-        $data_anak = $this->costume->get_data_anak_analisis();
+        $data_anak = $this->costume->get_data_anak_analisis($id_data);
         foreach ($data_anak as $key => $value) {
             $result[] = $this->probilitas_akhir($value->id_anak);
         }
         $data['prediksi'] = $result;
+        $data['id_data'] = $id_data;
         $data['title'] = 'Naive Bayes';
         $data['content'] = 'prediksi';
         $this->menu($data);
         // echo json_encode($result);
     }
     // use for analisis
-    function analisis($jenis = null)
+    function analisis()
     {
-        $id_data = 3;
         $data['title'] = 'Analisis ';
         $data['content'] = 'analisis';
-        // 1 for testing and 0 for training
-        $data['jenis'] = $jenis == null ? 1 : 0;
-        $data['analisis'] = $this->analisa($id_data, $data['jenis']);
-        // echo json_encode($data);
-        // exit;
+        $data['data'] = $this->model->get_data('data', 'id_data', 'DESC')->result();
         $this->menu($data);
+    }
+    function process_analisis()
+    {
+        $id_data = $this->input->post('id_data');
+        $jenis = $this->input->post('jenis');
+        // $data['jenis'] = $jenis == null ? 1 : 0;
+        $analisis = $this->analisa($id_data, $jenis);
+        $response = [
+            'status' => 'success',
+            'analisis' => $analisis,
+            'jenis' => $jenis,
+        ];
+        echo json_encode($response);
     }
     public function probilitas_akhir($id_anak, $command = null)
     {
@@ -453,6 +532,7 @@ class Naivebayes extends CI_Controller
         $id_sample = 3;
         $s_training = $this->model->count_data('table_anak', ['jenis_data' => 0, 'keterangan' => 'SIAP']);
         $b_training = $this->model->count_data('table_anak', ['jenis_data' => 0, 'keterangan' => 'BELUM']);
+
         $training = $this->model->count_data('table_anak', ['jenis_data' => 0]);
         $p_s = $s_training / $training;
         $p_b = $b_training / $training;
@@ -460,6 +540,10 @@ class Naivebayes extends CI_Controller
         $data_anak = $this->costume->get_data_anak_spefisik($id_anak);
         $p_s_umur = $this->costume->training_count_join_ortu_by($id_sample, ['umur' => $data_anak->umur], 'SIAP');
         $p_b_umur = $this->costume->training_count_join_ortu_by($id_sample, ['umur ' => $data_anak->umur], 'BELUM');
+        // user  for age
+
+        $b_umur_training = $this->model->count_data('table_anak', ['jenis_data' => 0, 'keterangan' => 'BELUM', 'umur' => $data_anak->umur]);
+        $s_umur_training = $this->model->count_data('table_anak', ['jenis_data' => 0, 'keterangan' => 'SIAP', 'umur' => $data_anak->umur]);
         // likelihood gender
         $p_s_gender = $this->costume->training_count_join_ortu_by($id_sample, ['jenis_kelamin' => $data_anak->jenis_kelamin], 'SIAP');
         $p_b_gender = $this->costume->training_count_join_ortu_by($id_sample, ['jenis_kelamin' => $data_anak->jenis_kelamin], 'BELUM');
@@ -478,6 +562,7 @@ class Naivebayes extends CI_Controller
         //nst
         $p_s_nst = $this->costume->training_count_join_ortu_by($id_sample, ['nst' => $data_anak->nst], 'SIAP');
         $p_b_nst = $this->costume->training_count_join_ortu_by($id_sample, ['nst' => $data_anak->nst], 'BELUM');
+
         $search =
             [
                 // 'time_execute' => microtime(true) - $start,
@@ -492,6 +577,8 @@ class Naivebayes extends CI_Controller
                     ]
                 ],
                 'umur' => [
+                    // 'p_siap' => $s_umur_training == 0 ? 0 : $p_s_umur / $s_umur_training,
+                    // 'p_belum' => $b_umur_training == 0 ? 0 : $p_b_umur / $b_umur_training,
                     'p_siap' => $p_s_umur / $s_training,
                     'p_belum' => $p_b_umur / $b_training,
                     'dummy' => [
@@ -500,6 +587,7 @@ class Naivebayes extends CI_Controller
                         's_training' => $s_training,
                         'b_training' => $b_training,
                         'umur' => $data_anak->umur,
+                        'be' => $b_umur_training,
                     ]
                 ],
                 'gender' => [
@@ -570,25 +658,28 @@ class Naivebayes extends CI_Controller
             ];
         $result['siap'] = 1;
         $result['belum'] = 1;
-        $pembulatan = 4;
+        $pembulatan = (int)$this->session->userdata('hitungan') == null ? 2 : $this->session->userdata('hitungan');
         foreach ($search as $key => $value) {
             $result['nilai_siap'][] = round($value['p_siap'], $pembulatan);
             $result['nilai_belum'][] =  round($value['p_belum'], $pembulatan);
             $result['siap'] *= round($value['p_siap'], $pembulatan);
             $result['belum'] *= round($value['p_belum'], $pembulatan);
         }
-        $prediksi = $result['siap'] > $result['belum'] ? 'SIAP' : 'BELUM';
+        $rentang = $this->session->userdata('rentang') == null ? 0.001 : (float)$this->session->userdata('rentang');
+        $prediksi = $result['siap'] > $result['belum'] ? ($result['siap'] > $rentang ? 'SIAP' : 'BELUM') : 'BELUM';
+        // $prediksi = $result['siap'] > $result['belum'] ? 'SIAP' : 'BELUM';
         $response = (object) [
             'data_anak' => $data_anak,
             'prediksi' => $prediksi,
             'probabilitas' => [
                 'n_siap' => $result['nilai_siap'],
-                'siap' => round($result['siap'], $pembulatan),
+                'siap' => round(sprintf('%.53f', $result['siap']), $pembulatan),
                 'n_belum' => $result['nilai_belum'],
-                'belum' => round($result['belum'], $pembulatan),
+                'belum' => round(sprintf('%.53f', $result['belum']), $pembulatan),
             ],
             'persentase' => $this->posterior($result['siap'], $result['belum']),
             'search' => $search,
+            'rentang' => $rentang,
         ];
         if ($command == null) {
 
@@ -824,6 +915,8 @@ class Naivebayes extends CI_Controller
         $siap = $this->likelihood($nst, 55);
         $tidak_siap = $this->likelihood($nst, 45);
         $posterior = $this->probilitas_akhir($id_anak);
+        $pembulatan = (int)$this->session->userdata('hitungan') == null ? 2 : $this->session->userdata('hitungan');
+        // $pembulatan = 2;
         $analisis = $posterior->probabilitas['siap'] > $posterior->probabilitas['belum'] ? 'SIAP' : 'BELUM';
         $response = [
             'status' => 'success',
@@ -831,10 +924,11 @@ class Naivebayes extends CI_Controller
             'analisis' => $analisis,
             // 'siap' => round($posterior->probabilitas['siap'], 4) * 100,
             // 'tidak'=> round($posterior->probabilitas['belum'], 4) * 100,
-            'siap' => $posterior->probabilitas['siap'] * 100,
-            'tidak' => $posterior->probabilitas['belum'] * 100,
+            'siap' => round(($posterior->probabilitas['siap']  * 100), $pembulatan),
+            'tidak' => round(($posterior->probabilitas['belum'] * 100), $pembulatan),
             // use here
             'kesiapan' => $kesiapan,
+            'pembulatan' => $pembulatan,
         ];
         echo json_encode($response);
     }
@@ -842,25 +936,78 @@ class Naivebayes extends CI_Controller
     {
         $data['title'] = 'Naive Bayes';
         $data['content'] = 'akurasi';
-        $tp = 13;
-        $tn = 3;
-        $fp = 0;
-        $fn = 1;
-        $akurasi = ($tp + $tn) / ($tp + $tn + $fp + $fn);
-        $response = [
-            'tp' => $tp,
-            'tn' => $tn,
-            'fp' => $fp,
-            'fn' => $fn,
-            'akurasi' => ['real' => $akurasi, 'perentase' => $akurasi * 100],
-        ];
+        $data['data'] = $this->model->get_data('data', 'id_data', 'DESC')->result();
+
+        $this->menu($data);
+    }
+    function process_akurasi()
+    {
+
+        $id_data = $this->input->post('id_data');
+        // $id_data = 3;
+        $data_anak = $this->costume->get_data_anak_analisis($id_data);
+        foreach ($data_anak as $key => $value) {
+            $check = $this->probilitas_akhir($value->id_anak);
+            if ($check->data_anak->keterangan == 'SIAP' && $check->prediksi == 'SIAP') {
+                $status = 'tp';
+            } else if ($check->data_anak->keterangan == 'BELUM' && $check->prediksi == 'BELUM') {
+                $status = 'tn';
+            } else if ($check->data_anak->keterangan == 'BELUM' && $check->prediksi == 'SIAP') {
+                $status = 'fp';
+            } else if ($check->data_anak->keterangan == 'SIAP' && $check->prediksi == 'BELUM') {
+                $status = 'fn';
+            }
+
+            $result[] = [
+                'id_anak' => $check->data_anak->id_anak,
+                'nama_anak' => $check->data_anak->nama_anak,
+                'keterangan' => $check->data_anak->keterangan,
+                'prediksi' => $check->prediksi,
+                'status' => $status,
+            ];
+        }
+        $status_counts = ['tp' => 0, 'tn' => 0, 'fp' => 0, 'fn' => 0];
+
+        $tp = [];
+        $tn = [];
+        $fp = [];
+        $fn = [];
+
+        foreach ($result as $child) {
+            if ($child['status'] == 'tp') {
+                $tp[] = $child;
+            } elseif ($child['status'] == 'tn') {
+                $tn[] = $child;
+            } elseif ($child['status'] == 'fp') {
+                $fp[] = $child;
+            } else {
+                $fn[] = $child;
+            }
+        }
+
+        $count_tp = count($tp);
+        $count_tn = count($tn);
+        $count_fp = count($fp);
+        $count_fn = count($fn);
+        $akurasi = ($count_tp + $count_tn) / ($count_tp + $count_tn + $count_fp + $count_fn);
+
         $data['tp'] = $tp;
         $data['tn'] = $tn;
         $data['fp'] = $fp;
         $data['fn'] = $fn;
         $data['akurasi'] = ['real' => $akurasi, 'persentase' => round($akurasi * 100, 2)];
-        // echo json_encode();
-        $this->menu($data);
+        $response = [
+            'tp' => $tp,
+            'tn' => $tn,
+            'fp' => $fp,
+            'fn' => $fn,
+            'count_tp' => $count_tp,
+            'count_tn' => $count_tn,
+            'count_fp' => $count_fp,
+            'count_fn' => $count_fn,
+            'akurasi' => ['real' => $akurasi, 'persentase' => $akurasi * 100],
+        ];
+        echo json_encode($response);
     }
 }
 
